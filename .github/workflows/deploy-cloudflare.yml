@@ -1,0 +1,55 @@
+# Build Blazor WASM + deploy to Cloudflare Workers (Static Assets)
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [cloudflare/workers-autoconfig]
+  workflow_dispatch:
+
+env:
+  TZ: Europe/Paris
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+
+      - name: Restore dependencies
+        run: dotnet restore ./CodeDeLaRoute.csproj
+
+      - name: Build Blazor Project
+        run: dotnet build ./CodeDeLaRoute.csproj --configuration Release --no-restore
+
+      - name: Publish Blazor Project
+        run: dotnet publish CodeDeLaRoute.sln -c:Release -o wwwroot --nologo
+
+      - name: Fix boot loader fingerprint placeholder
+        run: |
+          BOOT_JS=$(find ./wwwroot/_framework -maxdepth 1 -name 'blazor.webassembly*.js' ! -name '*.br' ! -name '*.gz' 2>/dev/null | head -1)
+          if [ -n "$BOOT_JS" ]; then
+            BOOT_NAME=$(basename "$BOOT_JS")
+            sed -i "s|_framework/blazor\.webassembly#\[\.{fingerprint}\]\.js|_framework/${BOOT_NAME}|g" ./wwwroot/index.html
+            echo "Fixed boot loader: ${BOOT_NAME}"
+          else
+            echo "WARNING: blazor.webassembly JS not found"
+          fi
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
