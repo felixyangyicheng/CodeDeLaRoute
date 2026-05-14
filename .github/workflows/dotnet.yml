@@ -71,15 +71,15 @@ jobs:
 
       # Publishes Blazor project to the release-folder
       - name: Publish Blazor Project
-        run: dotnet publish CodeDeLaRoute.sln -c:Release -p:GHPages=true -o CodeDeLaRoute --nologo
+        run: dotnet publish CodeDeLaRoute.sln -c:Release -p:GHPages=true -o wwwroot --nologo
         
       # touch 404.html & .nojekyll # Supprime la dernière ligne du fichier # Ajoute la date et l'heure actuelles à la fin du fichier
       - name: touch 404.html & .nojekyll
         run: |
             touch ./wwwroot/.nojekyll
-            cp ./wwwroot/index.html CodeDeLaRoute/wwwroot/404.html    
-            sed -i '$d' ./wwwroot/README.md  
-            echo "Dernière modification: $(date +"%Y-%m-%dT%I:%M:%pZ")" >> ./wwwroot/README.md 
+            cp ./wwwroot/index.html ./wwwroot/404.html
+
+            echo "Dernière modification: $(date +"%Y-%m-%dT%I:%M:%pZ")" > ./wwwroot/README.md
 
 
       # Rewrite base href        
