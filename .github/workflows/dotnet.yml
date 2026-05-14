@@ -1,4 +1,4 @@
-#from https://github.com/ILoveDotNet/ilovedotnet/blob/main/.github/workflows/deployment.yml
+# from https://github.com/ILoveDotNet/ilovedotnet/blob/main/.github/workflows/deployment.yml
 name: build and test and deploy
 
 on:
@@ -9,38 +9,42 @@ on:
     branches:
       - master
   schedule:
-      # Runs every sunday 05.00 PM UTC (22.30 PM IST Equivalent). Pattern - "*(0-59 minute) *(0-23 hour) *(1-31 day of the month) *(1-12 month) *(0-6 day of the week)"
-      - cron: '0 17 * * 0'
+    - cron: '0 17 * * 0'
+  workflow_dispatch:
+
+env:
+  TZ: Europe/Paris
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-test-deploy-blazor:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # Checkout the code
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 11.0.x
 
-
-      # Install dotnet wasm buildtools workload
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
 
-      # Restore Dependencies
       - name: Restore dependencies
         run: dotnet restore ./CodeDeLaRoute.csproj
 
-      # Check Vulnerable Nuget Packages
       - name: Checking Vulnerable Nuget Packages
         run: |
           dotnet list ./CodeDeLaRoute.csproj package --vulnerable --include-transitive --format=json > list.json
@@ -51,47 +55,63 @@ jobs:
           else
             echo 'No vulnerabilities found!'
           fi
-        
-      # Check Outdated Nuget Packages
+
       - name: Checking Outdated Nuget Packages
         run: dotnet list ./CodeDeLaRoute.csproj package --outdated --include-transitive --format json
-        
-      # Check Deprecated Nuget Packages
+
       - name: Checking Deprecated Nuget Packages
         run: dotnet list ./CodeDeLaRoute.csproj package --deprecated --include-transitive --format json
 
-      # Build Blazor Project
       - name: Build Blazor Project
         run: dotnet build ./CodeDeLaRoute.csproj --configuration Release --no-restore
-        
-      # Install dotnet report generator
+
       - name: Install .NET Report Generator
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
-        
 
-      # Publishes Blazor project to the release-folder
       - name: Publish Blazor Project
         run: dotnet publish CodeDeLaRoute.sln -c:Release -p:GHPages=true -o wwwroot --nologo
-        
-      # touch 404.html & .nojekyll # Supprime la dernière ligne du fichier # Ajoute la date et l'heure actuelles à la fin du fichier
+
+      - name: Fix publish output for GitHub Pages
+        run: |
+          # Blazor GHPages=true may create nested wwwroot/wwwroot/
+          if [ -d ./wwwroot/wwwroot ]; then
+            cp -r ./wwwroot/wwwroot/* ./wwwroot/ 2>/dev/null || true
+            rm -rf ./wwwroot/wwwroot
+            echo "Merged nested wwwroot/ to parent"
+          fi
+          # Replace #[.{fingerprint}] placeholder with actual boot loader filename
+          BOOT_JS=$(find ./wwwroot/_framework -maxdepth 1 -name 'blazor.webassembly*.js' ! -name '*.br' ! -name '*.gz' 2>/dev/null | head -1)
+          if [ -n "$BOOT_JS" ]; then
+            BOOT_NAME=$(basename "$BOOT_JS")
+            sed -i "s|_framework/blazor\.webassembly#\[\.{fingerprint}\]\.js|_framework/${BOOT_NAME}|g" ./wwwroot/index.html
+            echo "Fixed boot loader: ${BOOT_NAME}"
+          else
+            echo "WARNING: blazor.webassembly JS not found"
+          fi
+
       - name: touch 404.html & .nojekyll
         run: |
-            touch ./wwwroot/.nojekyll
-            cp ./wwwroot/index.html ./wwwroot/404.html
+          touch ./wwwroot/.nojekyll
+          cp ./wwwroot/index.html ./wwwroot/404.html
+          echo "Dernière modification: $(date +"%Y-%m-%dT%I:%M:%pZ")" > ./wwwroot/README.md
 
-            echo "Dernière modification: $(date +"%Y-%m-%dT%I:%M:%pZ")" > ./wwwroot/README.md
-
-
-      # Rewrite base href        
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
         with:
           html_path: ./wwwroot/index.html
-          base_href: /        
-      # Commit Blazor Web App to GitHub Pages
-      - name: Commit wwwroot to GitHub Pages
+          base_href: /
+
+      - name: Setup Pages
         if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
+        uses: actions/upload-pages-artifact@v3
         with:
-          BRANCH: gh-pages
-          FOLDER: ./wwwroot
+          path: './wwwroot'
+
+      - name: Deploy to GitHub Pages
+        if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
+        id: deployment
+        uses: actions/deploy-pages@v4
