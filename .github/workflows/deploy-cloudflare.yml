@@ -56,9 +56,9 @@ jobs:
             echo "Merged nested wwwroot/ to parent"
           fi
 
-      - name: Publish to Cloudflare Pages
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy wwwroot --project-name=code-de-la-route
+          command: deploy
