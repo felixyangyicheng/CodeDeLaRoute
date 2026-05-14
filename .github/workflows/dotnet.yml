@@ -71,7 +71,7 @@ jobs:
 
       # Publishes Blazor project to the release-folder
       - name: Publish Blazor Project
-        run: dotnet publish ./CodeDeLaRoute.sln -c:Release -p:GHPages=true -o CodeDeLaRoute --nologo
+        run: dotnet publish CodeDeLaRoute.sln -c:Release -p:GHPages=true -o CodeDeLaRoute --nologo
         
       # touch 404.html & .nojekyll # Supprime la dernière ligne du fichier # Ajoute la date et l'heure actuelles à la fin du fichier
       - name: touch 404.html & .nojekyll
