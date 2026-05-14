@@ -47,6 +47,14 @@ jobs:
             echo "WARNING: blazor.webassembly JS not found"
           fi
 
+      - name: Fix nested wwwroot/ from Blazor publish
+        run: |
+          if [ -d ./wwwroot/wwwroot ]; then
+            cp -r ./wwwroot/wwwroot/* ./wwwroot/ 2>/dev/null || true
+            rm -rf ./wwwroot/wwwroot
+            echo "Merged nested wwwroot/ to parent"
+          fi
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
