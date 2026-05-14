@@ -1,0 +1,41 @@
+# Cache rules for Blazor WebAssembly
+# WebAssembly files and .NET DLLs — long cache (fingerprinted)
+/_framework/*.wasm
+  Cache-Control: public, max-age=31536000, immutable
+
+/_framework/*.dll
+  Cache-Control: public, max-age=31536000, immutable
+
+/_framework/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static assets — medium cache
+/css/*
+  Cache-Control: public, max-age=604800
+
+/data/*
+  Cache-Control: public, max-age=86400
+
+# MudBlazor — long cache
+/_content/MudBlazor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images — long cache
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.svg
+  Cache-Control: public, max-age=2592000
+
+/*.ico
+  Cache-Control: public, max-age=2592000
+
+# HTML and service worker — no cache
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/service-worker.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/manifest.json
+  Cache-Control: public, max-age=86400

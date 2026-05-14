@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1001,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Un panneau de danger est toujours de forme :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_A1a.svg?width=480",
+    "options": ["Ronde", "Triangulaire", "Carrée", "Rectangulaire"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les panneaux de danger sont toujours triangulaires, bordés de rouge."
+  },
+  {
+    "id": 1002,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Que signifie un panneau carré à fond blanc avec une flèche noire ?",
+    "imageUrl": null,
+    "options": ["Un danger", "Une direction obligatoire", "Une indication de direction", "Une interdiction"],
+    "correctAnswerIndices": [2],
+    "explanation": "Les panneaux carrés à fond blanc sont des panneaux d'indication de direction."
+  },
+  {
+    "id": 1003,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Un panneau de limitation de vitesse est de forme :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B14_50.svg?width=480",
+    "options": ["Triangulaire", "Ronde à fond blanc bordée de rouge", "Carrée à fond bleu", "Rectangulaire"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les limitations de vitesse sont des panneaux ronds à fond blanc bordés de rouge."
+  },
+  {
+    "id": 1004,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Un panneau de fin d'interdiction est reconnaissable car il est :",
+    "imageUrl": null,
+    "options": ["Rond barré d'une diagonale noire sur fond blanc", "Triangulaire bordé de rouge", "Carré à fond bleu", "Rond à fond bleu"],
+    "correctAnswerIndices": [0],
+    "explanation": "Les panneaux de fin d'interdiction sont ronds, fond blanc, barrés d'une diagonale noire."
+  },
+  {
+    "id": 1005,
+    "category": "Signalisation",
+    "difficulty": "Difficile",
+    "text": "Quels panneaux sont de forme triangulaire ? (plusieurs réponses)",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_A1a.svg?width=480",
+    "options": ["Panneau de danger", "Panneau de cédez-le-passage", "Panneau STOP", "Panneau d'obligation"],
+    "correctAnswerIndices": [0, 1],
+    "explanation": "Les panneaux de danger et le cédez-le-passage sont triangulaires. Le STOP est octogonal, l'obligation est ronde."
+  },
+  {
+    "id": 1006,
+    "category": "Signalisation",
+    "difficulty": "Difficile",
+    "text": "Un panneau à fond jaune indique :",
+    "imageUrl": null,
+    "options": ["Une route prioritaire", "Une signalisation temporaire (travaux)", "Un itinéraire bis", "Une zone touristique"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les panneaux à fond jaune signalent une signalisation temporaire, généralement pour des travaux."
+  },
+  {
+    "id": 1007,
+    "category": "Priorité",
+    "difficulty": "Moyen",
+    "text": "À une intersection avec un feu tricolore en panne, vous devez :",
+    "imageUrl": null,
+    "options": ["Passer prudemment", "Appliquer la règle de priorité à droite", "Attendre l'arrivée de la police", "Klaxonner avant de passer"],
+    "correctAnswerIndices": [1],
+    "explanation": "Si le feu est en panne ou éteint, la règle de priorité à droite s'applique."
+  },
+  {
+    "id": 1008,
+    "category": "Priorité",
+    "difficulty": "Moyen",
+    "text": "Qui est prioritaire dans une intersection où le feu passe au rouge ?",
+    "imageUrl": "https://images.unsplash.com/photo-1621976360623-004223292274?w=600&fit=crop",
+    "options": ["Les véhicules déjà engagés dans l'intersection", "Les véhicules qui arrivent au feu rouge", "Les piétons uniquement", "Personne, tout le monde s'arrête"],
+    "correctAnswerIndices": [0],
+    "explanation": "Les véhicules déjà engagés dans l'intersection doivent la dégager, même si le feu passe au rouge."
+  },
+  {
+    "id": 1009,
+    "category": "Priorité",
+    "difficulty": "Facile",
+    "text": "Un véhicule qui sort d'un parking privé doit :",
+    "imageUrl": null,
+    "options": ["Passer rapidement", "Céder le passage à tous les usagers", "Klaxonner", "Allumer ses warning"],
+    "correctAnswerIndices": [1],
+    "explanation": "En sortant d'un parking privé, vous devez céder le passage à tous les usagers de la voie publique."
+  },
+  {
+    "id": 1010,
+    "category": "Priorité",
+    "difficulty": "Difficile",
+    "text": "Quels véhicules sont prioritaires lorsqu'ils utilisent leurs avertisseurs ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Police", "Pompiers", "SAMU", "Dépanneuse"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Police, pompiers et SAMU avec gyrophares + sirène sont prioritaires. Les dépanneuses ne le sont pas."
+  },
+  {
+    "id": 1011,
+    "category": "Priorité",
+    "difficulty": "Moyen",
+    "text": "Face à un panneau STOP, vous devez marquer l'arrêt :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_AB4.svg?width=480",
+    "options": ["Avant la ligne blanche", "Après la ligne blanche", "Au niveau du panneau", "N'importe où"],
+    "correctAnswerIndices": [0],
+    "explanation": "L'arrêt doit être marqué avant la ligne blanche. S'il n'y a pas de ligne, avant le panneau."
+  },
+  {
+    "id": 1012,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "En agglomération, la vitesse peut être limitée à 30 km/h dans :",
+    "imageUrl": null,
+    "options": ["Toute l'agglomération", "Les zones 30 uniquement", "Les autoroutes urbaines", "Les parkings"],
+    "correctAnswerIndices": [1],
+    "explanation": "La vitesse à 30 km/h s'applique dans les zones 30, signalées par un panneau spécifique à l'entrée."
+  },
+  {
+    "id": 1013,
+    "category": "Vitesse",
+    "difficulty": "Difficile",
+    "text": "Sur quel type de route la vitesse maximale est-elle de 110 km/h par temps sec pour un conducteur confirmé ?",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Autoroute à 2×2 voies", "Route à 2×2 voies avec séparateur central", "Route nationale à double sens", "Voie rapide urbaine"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les routes à 2×2 voies avec séparateur central (hors autoroute) sont limitées à 110 km/h."
+  },
+  {
+    "id": 1014,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Quel panneau indique la fin d'une limitation de vitesse ?",
+    "imageUrl": null,
+    "options": ["Un panneau rond barré d'une diagonale noire", "Un panneau triangulaire", "Un panneau carré bleu", "Un panneau STOP"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le panneau de fin de limitation de vitesse est rond, fond blanc, barré d'une diagonale noire avec la valeur."
+  },
+  {
+    "id": 1015,
+    "category": "Vitesse",
+    "difficulty": "Difficile",
+    "text": "Quelles sanctions pour un excès de vitesse de 30 km/h sur autoroute ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["135 € d'amende", "Retrait de 2 points", "Retrait de 3 points", "Suspension possible du permis"],
+    "correctAnswerIndices": [0, 1],
+    "explanation": "Excès de 30 km/h sur autoroute (130→160) : 135 € et 2 points."
+  },
+  {
+    "id": 1016,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Moyen",
+    "text": "Après avoir bu de l'alcool, combien de temps faut-il environ par verre pour éliminer l'alcool ?",
+    "imageUrl": null,
+    "options": ["30 minutes", "1 heure", "2 heures", "3 heures"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le corps élimine environ 0,10 à 0,15 g/l par heure, soit environ 1 heure par verre standard."
+  },
+  {
+    "id": 1017,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Difficile",
+    "text": "Le dépistage de stupéfiants au volant est : (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Obligatoire en cas d'accident corporel", "Effectué par test salivaire", "Effectué uniquement en cas de suspicion", "Puni de 6 points de retrait"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Le dépistage est obligatoire après un accident corporel, se fait par test salivaire, et coûte 6 points."
+  },
+  {
+    "id": 1018,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Moyen",
+    "text": "Quel est le taux d'alcoolémie maximal pour un conducteur de transport en commun ?",
+    "imageUrl": null,
+    "options": ["0,0 g/l", "0,2 g/l", "0,5 g/l", "1,0 g/l"],
+    "correctAnswerIndices": [1],
+    "explanation": "Pour les conducteurs de transport en commun, le taux maximal est de 0,2 g/l."
+  },
+  {
+    "id": 1019,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Facile",
+    "text": "L'alcool au volant est la cause d'environ quel pourcentage des accidents mortels ?",
+    "imageUrl": null,
+    "options": ["10%", "20%", "30%", "50%"],
+    "correctAnswerIndices": [2],
+    "explanation": "L'alcool est impliqué dans environ 30% des accidents mortels en France."
+  },
+  {
+    "id": 1020,
+    "category": "Stationnement",
+    "difficulty": "Moyen",
+    "text": "Le stationnement en épi est :",
+    "imageUrl": null,
+    "options": ["Un stationnement en diagonale par rapport au trottoir", "Un stationnement interdit", "Un stationnement gratuit", "Un stationnement réservé aux motos"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le stationnement en épi désigne un stationnement en diagonale par rapport au trottoir."
+  },
+  {
+    "id": 1021,
+    "category": "Stationnement",
+    "difficulty": "Moyen",
+    "text": "Stationner devant une bouche d'incendie est passible de :",
+    "imageUrl": null,
+    "options": ["Une amende de 35 €", "Une amende de 135 € et mise en fourrière", "Un simple avertissement", "Aucune sanction"],
+    "correctAnswerIndices": [1],
+    "explanation": "Stationner devant une borne incendie = amende de 135 € et mise en fourrière possible."
+  },
+  {
+    "id": 1022,
+    "category": "Stationnement",
+    "difficulty": "Difficile",
+    "text": "Quels stationnements sont interdits ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Sur un passage piéton", "À moins de 5 m d'un virage", "Sur une place réservée handicapés sans macaron", "En double file"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces stationnements sont interdits : passage piéton, virage, place PMR, double file."
+  },
+  {
+    "id": 1023,
+    "category": "Stationnement",
+    "difficulty": "Facile",
+    "text": "En agglomération, combien de temps peut-on stationner au même endroit au maximum ?",
+    "imageUrl": null,
+    "options": ["24 heures", "48 heures", "7 jours consécutifs", "Illimité sauf signalisation contraire"],
+    "correctAnswerIndices": [2],
+    "explanation": "En agglomération, le stationnement est limité à 7 jours consécutifs au même emplacement."
+  },
+  {
+    "id": 1024,
+    "category": "Éclairage",
+    "difficulty": "Moyen",
+    "text": "Par forte pluie, quels feux devez-vous allumer ?",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Feux de position uniquement", "Feux de croisement", "Feux de route", "Feux de brouillard arrière"],
+    "correctAnswerIndices": [1],
+    "explanation": "Par forte pluie, allumez vos feux de croisement. Les feux de brouillard arrière sont réservés au brouillard/neige."
+  },
+  {
+    "id": 1025,
+    "category": "Éclairage",
+    "difficulty": "Difficile",
+    "text": "En cas de panne d'éclairage la nuit, vous devez : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1473330694553-7babfd5ef4fa?w=600&fit=crop",
+    "options": ["Vous arrêter dès que possible", "Allumer vos warning", "Rouler au ralenti", "Utiliser une lampe de poche"],
+    "correctAnswerIndices": [0, 1],
+    "explanation": "Arrêtez-vous dès que possible et allumez vos warning. Ne continuez pas sans éclairage."
+  },
+  {
+    "id": 1026,
+    "category": "Éclairage",
+    "difficulty": "Facile",
+    "text": "Les feux de jour (DRL) à l'avant :",
+    "imageUrl": null,
+    "options": ["Remplacent les feux de croisement la nuit", "Améliorent la visibilité de jour", "Sont obligatoires sur tous les véhicules", "Servent uniquement de décoration"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les feux de jour améliorent la visibilité du véhicule de jour. Ils ne remplacent pas les feux de croisement la nuit."
+  },
+  {
+    "id": 1027,
+    "category": "Éclairage",
+    "difficulty": "Moyen",
+    "text": "Dans un tunnel éclairé, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=600&fit=crop",
+    "options": ["Allumer vos feux de croisement", "Éteindre tous vos feux", "Allumer vos feux de route", "Rouler en feux de position"],
+    "correctAnswerIndices": [0],
+    "explanation": "Même dans un tunnel éclairé, l'allumage des feux de croisement est obligatoire."
+  },
+  {
+    "id": 1028,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Quelle amende pour non-port de la ceinture de sécurité ?",
+    "imageUrl": null,
+    "options": ["35 €", "90 €", "135 €", "200 €"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le non-port de la ceinture est sanctionné par une amende de 135 € (minorée à 90 €)."
+  },
+  {
+    "id": 1029,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Un enfant de moins de 10 ans doit être installé :",
+    "imageUrl": null,
+    "options": ["À l'avant sur les genoux", "À l'arrière dans un siège adapté", "N'importe où avec la ceinture", "À l'avant dans un siège bébé dos à la route"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les enfants de moins de 10 ans doivent être à l'arrière dans un dispositif de retenue adapté à leur âge et poids."
+  },
+  {
+    "id": 1030,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quels éléments vérifier régulièrement pour la sécurité ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1550355191-aa8a80b1a558?w=600&fit=crop",
+    "options": ["Pression des pneus", "État des essuie-glaces", "Niveau de liquide de frein", "Fonctionnement des feux"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces éléments sont à vérifier régulièrement : pneus, essuie-glaces, freins, éclairage."
+  },
+  {
+    "id": 1031,
+    "category": "Sécurité",
+    "difficulty": "Facile",
+    "text": "Le triangle de présignalisation doit être placé à quelle distance du véhicule en panne ?",
+    "imageUrl": null,
+    "options": ["10 mètres", "30 mètres", "50 mètres", "100 mètres"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le triangle doit être placé à au moins 30 mètres du véhicule (ou avant un virage/sommet de côte)."
+  },
+  {
+    "id": 1032,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Sur autoroute, la distance de sécurité à 130 km/h est d'environ :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["50 mètres", "73 mètres (2 secondes)", "100 mètres", "30 mètres"],
+    "correctAnswerIndices": [1],
+    "explanation": "À 130 km/h, la distance parcourue en 2 secondes est d'environ 73 mètres. C'est la distance de sécurité minimale."
+  },
+  {
+    "id": 1033,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Facile",
+    "text": "Pour doubler un véhicule, vous devez vous déporter :",
+    "imageUrl": null,
+    "options": ["À droite", "À gauche", "Sur le trottoir", "Au centre de la chaussée"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le dépassement s'effectue par la gauche, sauf cas particuliers (véhicule tournant à gauche, etc.)."
+  },
+  {
+    "id": 1034,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Moyen",
+    "text": "Quelle ligne au sol interdit formellement le dépassement ?",
+    "imageUrl": null,
+    "options": ["Une ligne discontinue", "Une ligne continue", "Des flèches de rabattement", "Des pointillés larges"],
+    "correctAnswerIndices": [1],
+    "explanation": "Une ligne continue interdit le franchissement et donc le dépassement."
+  },
+  {
+    "id": 1035,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Difficile",
+    "text": "Dans quels cas le dépassement est-il interdit ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["En sommet de côte sans visibilité", "Dans un virage", "Sur un passage à niveau", "À une intersection sans visibilité"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Le dépassement est interdit dans toutes ces situations dangereuses."
+  },
+  {
+    "id": 1036,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Moyen",
+    "text": "Lors d'un dépassement, la différence de vitesse avec le véhicule dépassé doit être :",
+    "imageUrl": null,
+    "options": ["Au moins 10 km/h", "Au moins 20 km/h", "Au moins 30 km/h", "Peu importe"],
+    "correctAnswerIndices": [1],
+    "explanation": "La différence de vitesse doit être d'au moins 20 km/h pour que le dépassement soit rapide et sûr."
+  },
+  {
+    "id": 1037,
+    "category": "Environnement",
+    "difficulty": "Moyen",
+    "text": "Quel est le principal gaz à effet de serre émis par les véhicules thermiques ?",
+    "imageUrl": null,
+    "options": ["L'oxygène", "Le CO2", "L'azote", "L'hydrogène"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le dioxyde de carbone (CO2) est le principal gaz à effet de serre émis par les moteurs thermiques."
+  },
+  {
+    "id": 1038,
+    "category": "Environnement",
+    "difficulty": "Facile",
+    "text": "Pour circuler dans une ZFE (Zone à Faibles Émissions), vous devez :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Crit%27Air_vignette.svg?width=480",
+    "options": ["Avoir un véhicule électrique", "Avoir une vignette Crit'Air", "Payer un péage", "Rouler au diesel"],
+    "correctAnswerIndices": [1],
+    "explanation": "La vignette Crit'Air est obligatoire pour circuler dans les ZFE, quelle que soit la motorisation."
+  },
+  {
+    "id": 1039,
+    "category": "Environnement",
+    "difficulty": "Difficile",
+    "text": "Quels véhicules peuvent circuler dans une ZFE ? (plusieurs réponses)",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Crit%27Air_vignette.svg?width=480",
+    "options": ["Véhicules Crit'Air 0 (électriques)", "Véhicules Crit'Air 1", "Véhicules Crit'Air 2", "Tous les véhicules avec vignette"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Selon la ZFE, les Crit'Air 0, 1, 2 sont généralement autorisés. Les 3, 4, 5 sont souvent restreints."
+  },
+  {
+    "id": 1040,
+    "category": "Environnement",
+    "difficulty": "Moyen",
+    "text": "Laisser tourner le moteur à l'arrêt est passible d'une amende de :",
+    "imageUrl": null,
+    "options": ["35 €", "68 €", "135 €", "200 €"],
+    "correctAnswerIndices": [2],
+    "explanation": "Laisser tourner le moteur à l'arrêt (hors nécessité) est sanctionné par une amende de 135 €."
+  },
+  {
+    "id": 1041,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Facile",
+    "text": "À un passage piéton, les piétons sont prioritaires :",
+    "imageUrl": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&fit=crop",
+    "options": ["Uniquement s'ils sont déjà engagés", "Dès qu'ils manifestent l'intention de traverser", "Jamais", "Seulement avec un feu vert piéton"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les piétons sont prioritaires dès qu'ils manifestent clairement l'intention de traverser."
+  },
+  {
+    "id": 1042,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Moyen",
+    "text": "Un cycliste peut-il rouler de front à deux sur la chaussée ?",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&fit=crop",
+    "options": ["Jamais", "Oui, de jour uniquement", "Oui, et ils doivent se remettre en file à l'approche d'un véhicule", "Oui, tout le temps"],
+    "correctAnswerIndices": [2],
+    "explanation": "Les cyclistes peuvent rouler à deux de front, mais doivent se remettre en file simple à l'approche d'un véhicule."
+  },
+  {
+    "id": 1043,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Difficile",
+    "text": "Quelles règles s'appliquent dans une zone 30 ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Vitesse limitée à 30 km/h", "Les cyclistes peuvent rouler en sens inverse dans les sens uniques", "Les piétons sont prioritaires", "Le stationnement est interdit"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "En zone 30 : 30 km/h, double-sens cyclable, piétons prioritaires. Le stationnement est autorisé sauf interdiction."
+  },
+  {
+    "id": 1044,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Moyen",
+    "text": "Qu'est-ce qu'un sas vélo ?",
+    "imageUrl": null,
+    "options": ["Un espace réservé aux cyclistes devant le feu tricolore", "Un parking à vélos", "Une pompe à vélo publique", "Un couloir de bus partagé"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le sas vélo est un espace réservé aux cyclistes entre la ligne d'arrêt des voitures et le feu tricolore."
+  },
+  {
+    "id": 1045,
+    "category": "Premiers Secours",
+    "difficulty": "Facile",
+    "text": "En cas d'accident, dans quel ordre devez-vous agir ?",
+    "imageUrl": null,
+    "options": ["Secourir, Alerter, Protéger", "Protéger, Alerter, Secourir", "Alerter, Protéger, Secourir", "Protéger, Secourir, Alerter"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'ordre est PAS : Protéger la zone, Alerter les secours, Secourir les blessés."
+  },
+  {
+    "id": 1046,
+    "category": "Premiers Secours",
+    "difficulty": "Moyen",
+    "text": "En cas d'accident sur autoroute, où devez-vous vous réfugier ?",
+    "imageUrl": null,
+    "options": ["Sur la bande d'arrêt d'urgence", "Derrière la glissière de sécurité", "Dans le véhicule", "Sur la chaussée"],
+    "correctAnswerIndices": [1],
+    "explanation": "Sur autoroute, mettez-vous à l'abri derrière la glissière de sécurité, jamais sur la bande d'arrêt d'urgence."
+  },
+  {
+    "id": 1047,
+    "category": "Premiers Secours",
+    "difficulty": "Difficile",
+    "text": "Que faire si une victime est inconsciente et ne respire pas ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Appeler le 15 ou 112", "Commencer la RCP (massage cardiaque)", "Mettre en PLS", "Utiliser un DAE si disponible"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Appelez les secours, commencez la RCP (30 compressions / 2 insufflations) et utilisez un DAE. La PLS est pour les victimes qui respirent."
+  },
+  {
+    "id": 1048,
+    "category": "Permis à Points",
+    "difficulty": "Moyen",
+    "text": "Combien de points maximum peut-on récupérer avec un stage volontaire ?",
+    "imageUrl": null,
+    "options": ["2 points", "4 points", "6 points", "8 points"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un stage volontaire permet de récupérer jusqu'à 4 points, dans la limite du plafond de 12 points."
+  },
+  {
+    "id": 1049,
+    "category": "Permis à Points",
+    "difficulty": "Facile",
+    "text": "Combien de temps faut-il sans infraction pour récupérer tous ses points ?",
+    "imageUrl": null,
+    "options": ["1 an", "2 ans", "3 ans", "10 ans"],
+    "correctAnswerIndices": [1],
+    "explanation": "Après 2 ans sans infraction (3 ans pour les délits), vous récupérez automatiquement vos 12 points."
+  },
+  {
+    "id": 1050,
+    "category": "Permis à Points",
+    "difficulty": "Difficile",
+    "text": "Quelles infractions entraînent un retrait de 3 points ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Excès de vitesse ≥ 30 km/h", "Circulation sur bande d'arrêt d'urgence", "Non-respect des distances de sécurité", "Chevauchement d'une ligne continue"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Excès ≥ 30 km/h, bande d'arrêt d'urgence, ligne continue = 3 points. Le non-respect des distances = 3 points aussi (correction : c'est bien 3 points pour les distances)."
+  },
+  {
+    "id": 1051,
+    "category": "Conditions Météo",
+    "difficulty": "Facile",
+    "text": "Par temps de neige, que devez-vous faire avant de partir ?",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["Dégivrer toutes les vitres et rétroviseurs", "Rouler immédiatement pour réchauffer le moteur", "Mettre les feux de route", "Laisser une fine couche de neige sur le toit"],
+    "correctAnswerIndices": [0],
+    "explanation": "Dégivrez TOUTES les surfaces vitrées et rétroviseurs. Le toit doit aussi être déneigé pour ne pas projeter de neige."
+  },
+  {
+    "id": 1052,
+    "category": "Conditions Météo",
+    "difficulty": "Moyen",
+    "text": "La distance de freinage sur chaussée verglacée est multipliée par :",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["2", "3", "5", "10"],
+    "correctAnswerIndices": [3],
+    "explanation": "Sur chaussée verglacée, la distance de freinage peut être multipliée par 10 par rapport au sol sec."
+  },
+  {
+    "id": 1053,
+    "category": "Conditions Météo",
+    "difficulty": "Difficile",
+    "text": "Quels équipements sont obligatoires en zone montagne en hiver ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["Pneus neige ou chaînes", "Grattoir à givre", "Gilet de sécurité", "Triangle de présignalisation"],
+    "correctAnswerIndices": [0],
+    "explanation": "Seuls les pneus neige (ou chaînes) sont obligatoires en zone montagne. Les autres équipements sont obligatoires partout."
+  },
+  {
+    "id": 1054,
+    "category": "Conditions Météo",
+    "difficulty": "Moyen",
+    "text": "Par fort vent latéral, quel type de véhicule est le plus sensible ?",
+    "imageUrl": null,
+    "options": ["Les poids lourds", "Les véhicules hauts (camping-car, utilitaire)", "Les berlines", "Les SUV"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les véhicules hauts comme les camping-cars et utilitaires sont les plus sensibles au vent latéral."
+  },
+  {
+    "id": 1055,
+    "category": "Conditions Météo",
+    "difficulty": "Moyen",
+    "text": "Avec des chaînes à neige, la vitesse maximale est de :",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["30 km/h", "50 km/h", "70 km/h", "90 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "Avec des chaînes, ne dépassez pas 50 km/h pour éviter d'endommager les chaînes et la chaussée."
+  },
+  {
+    "id": 1056,
+    "category": "Tunnels et Autoroutes",
+    "difficulty": "Facile",
+    "text": "Sur autoroute, la bande d'arrêt d'urgence est réservée :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Au stationnement", "Aux véhicules lents", "Aux arrêts d'urgence uniquement", "Au dépassement"],
+    "correctAnswerIndices": [2],
+    "explanation": "La bande d'arrêt d'urgence est strictement réservée aux arrêts d'urgence. Y circuler = 135 € d'amende."
+  },
+  {
+    "id": 1057,
+    "category": "Tunnels et Autoroutes",
+    "difficulty": "Moyen",
+    "text": "Dans un tunnel, en cas d'incendie, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=600&fit=crop",
+    "options": ["Faire demi-tour", "Évacuer le véhicule et rejoindre une issue de secours", "Rester dans le véhicule", "Accélérer pour sortir"],
+    "correctAnswerIndices": [1],
+    "explanation": "En cas d'incendie dans un tunnel : évacuez immédiatement et rejoignez l'issue de secours la plus proche."
+  },
+  {
+    "id": 1058,
+    "category": "Tunnels et Autoroutes",
+    "difficulty": "Moyen",
+    "text": "Quelle est la vitesse minimale sur la voie de gauche d'une autoroute ?",
+    "imageUrl": null,
+    "options": ["50 km/h", "80 km/h", "100 km/h", "Il n'y a pas de vitesse minimale"],
+    "correctAnswerIndices": [1],
+    "explanation": "Sur la voie de gauche d'une autoroute, la vitesse minimale est de 80 km/h (sauf ralentissement)."
+  },
+  {
+    "id": 1059,
+    "category": "Tunnels et Autoroutes",
+    "difficulty": "Difficile",
+    "text": "Quelles règles s'appliquent dans un tunnel ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=600&fit=crop",
+    "options": ["Allumer les feux de croisement", "Respecter les distances de sécurité", "Couper la radio pour écouter les messages", "Ne pas s'arrêter sauf urgence"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Toutes ces règles s'appliquent : feux allumés, distances, radio allumée sur fréquence diffusée, pas d'arrêt."
+  },
+  {
+    "id": 1060,
+    "category": "Tunnels et Autoroutes",
+    "difficulty": "Facile",
+    "text": "Sur autoroute, il est interdit de :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Faire demi-tour", "Rouler à 130 km/h", "Dépasser par la gauche", "Utiliser le régulateur"],
+    "correctAnswerIndices": [0],
+    "explanation": "Faire demi-tour ou marche arrière sur autoroute est strictement interdit et extrêmement dangereux."
+  },
+  {
+    "id": 1061,
+    "category": "Distractions et Fatigue",
+    "difficulty": "Facile",
+    "text": "Téléphoner au volant avec un téléphone tenu en main est :",
+    "imageUrl": null,
+    "options": ["Toléré à l'arrêt", "Interdit en toutes circonstances", "Autorisé en ville", "Autorisé avec le haut-parleur"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'usage du téléphone tenu en main est interdit, même à l'arrêt (sauf véhicule garé, moteur coupé)."
+  },
+  {
+    "id": 1062,
+    "category": "Distractions et Fatigue",
+    "difficulty": "Moyen",
+    "text": "Quelle amende pour l'usage du téléphone au volant ?",
+    "imageUrl": null,
+    "options": ["35 € et 1 point", "135 € et 3 points", "200 € et 4 points", "68 €"],
+    "correctAnswerIndices": [1],
+    "explanation": "Téléphone au volant = 135 € d'amende et 3 points de retrait."
+  },
+  {
+    "id": 1063,
+    "category": "Distractions et Fatigue",
+    "difficulty": "Moyen",
+    "text": "La somnolence au volant est responsable d'environ :",
+    "imageUrl": null,
+    "options": ["5% des accidents mortels sur autoroute", "15%", "30%", "50%"],
+    "correctAnswerIndices": [2],
+    "explanation": "La somnolence cause environ 30% des accidents mortels sur autoroute."
+  },
+  {
+    "id": 1064,
+    "category": "Distractions et Fatigue",
+    "difficulty": "Difficile",
+    "text": "Quels signes indiquent la fatigue au volant ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Bâillements répétés", "Raideur de la nuque", "Regard fixe", "Difficulté à maintenir sa trajectoire"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces signes indiquent la fatigue. Arrêtez-vous dès les premiers signes."
+  },
+  {
+    "id": 1065,
+    "category": "Distractions et Fatigue",
+    "difficulty": "Facile",
+    "text": "Toutes les 2 heures de conduite, il est recommandé de :",
+    "imageUrl": null,
+    "options": ["Faire une pause de 15-20 minutes", "Boire un café", "Accélérer pour arriver plus vite", "Ouvrir la fenêtre"],
+    "correctAnswerIndices": [0],
+    "explanation": "Il est recommandé de faire une pause de 15 à 20 minutes toutes les 2 heures de conduite."
+  },
+  {
+    "id": 1066,
+    "category": "Documents et Assurance",
+    "difficulty": "Facile",
+    "text": "Quel document est obligatoire pour circuler en voiture ?",
+    "imageUrl": null,
+    "options": ["Le permis de conduire", "La carte grise (certificat d'immatriculation)", "L'attestation d'assurance", "Tous ces documents"],
+    "correctAnswerIndices": [3],
+    "explanation": "Permis de conduire, carte grise et attestation d'assurance sont tous obligatoires."
+  },
+  {
+    "id": 1067,
+    "category": "Documents et Assurance",
+    "difficulty": "Moyen",
+    "text": "Conduire sans assurance est puni de :",
+    "imageUrl": null,
+    "options": ["135 € d'amende", "Une amende de 3 750 € et possible prison", "Un simple avertissement", "3 points de retrait"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le défaut d'assurance est un délit : jusqu'à 3 750 € d'amende, suspension du permis, confiscation du véhicule."
+  },
+  {
+    "id": 1068,
+    "category": "Documents et Assurance",
+    "difficulty": "Moyen",
+    "text": "Le contrôle technique est obligatoire pour un véhicule de plus de 4 ans tous les :",
+    "imageUrl": null,
+    "options": ["6 mois", "1 an", "2 ans", "5 ans"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le contrôle technique doit être effectué tous les 2 ans pour les véhicules de plus de 4 ans."
+  },
+  {
+    "id": 1069,
+    "category": "Documents et Assurance",
+    "difficulty": "Difficile",
+    "text": "Quels documents devez-vous présenter lors d'un contrôle routier ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Permis de conduire", "Carte grise", "Attestation d'assurance", "Contrôle technique"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces documents doivent être présentés lors d'un contrôle : permis, carte grise, assurance, contrôle technique."
+  },
+  {
+    "id": 1070,
+    "category": "Signalisation temporaire",
+    "difficulty": "Facile",
+    "text": "Un panneau de travaux est généralement de couleur :",
+    "imageUrl": null,
+    "options": ["Bleu", "Jaune", "Rouge", "Vert"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les panneaux de signalisation temporaire (travaux) sont à fond jaune."
+  },
+  {
+    "id": 1071,
+    "category": "Signalisation temporaire",
+    "difficulty": "Moyen",
+    "text": "Face à un feu tricolore de chantier, vous devez :",
+    "imageUrl": null,
+    "options": ["Passer s'il n'y a pas d'ouvrier", "Respecter le feu comme un feu normal", "Klaxonner pour signaler votre présence", "Contourner le chantier"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les feux de chantier ont la même valeur réglementaire que les feux normaux. Respectez-les strictement."
+  },
+  {
+    "id": 1072,
+    "category": "Signalisation temporaire",
+    "difficulty": "Moyen",
+    "text": "La vitesse près d'un chantier mobile sur autoroute est limitée à :",
+    "imageUrl": null,
+    "options": ["50 km/h", "70 km/h", "90 km/h", "110 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "À proximité d'un chantier mobile (véhicules d'entretien), la vitesse est limitée à 70 km/h."
+  },
+  {
+    "id": 1073,
+    "category": "Signalisation temporaire",
+    "difficulty": "Difficile",
+    "text": "Quels comportements adopter près d'une zone de travaux ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Réduire votre vitesse", "Respecter la signalisation temporaire", "Augmenter les distances de sécurité", "Doubler les véhicules de chantier"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Réduisez votre vitesse, respectez la signalisation, augmentez les distances. Ne doublez pas les véhicules de chantier."
+  },
+  {
+    "id": 1074,
+    "category": "Signalisation temporaire",
+    "difficulty": "Facile",
+    "text": "La signalisation temporaire prime-t-elle sur la signalisation permanente ?",
+    "imageUrl": null,
+    "options": ["Non, la signalisation permanente prime", "Oui, la signalisation temporaire prime toujours", "Ça dépend de l'agent de circulation", "Les deux s'appliquent"],
+    "correctAnswerIndices": [1],
+    "explanation": "La signalisation temporaire (travaux, accident) prime sur la signalisation permanente."
+  },
+  {
+    "id": 1075,
+    "category": "Passages à niveau",
+    "difficulty": "Facile",
+    "text": "Un feu rouge clignotant à un passage à niveau signifie :",
+    "imageUrl": null,
+    "options": ["Arrêt absolu", "Passez rapidement", "Ralentissez et passez", "Demi-tour obligatoire"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le feu rouge clignotant à un passage à niveau impose un arrêt absolu avant la voie ferrée."
+  },
+  {
+    "id": 1076,
+    "category": "Passages à niveau",
+    "difficulty": "Moyen",
+    "text": "Si votre véhicule cale sur un passage à niveau, vous devez :",
+    "imageUrl": null,
+    "options": ["Évacuer le véhicule immédiatement", "Appeler un dépanneur", "Redémarrer le moteur", "Attendre l'aide des autres usagers"],
+    "correctAnswerIndices": [0],
+    "explanation": "Évacuez immédiatement le véhicule et éloignez-vous de la voie ferrée. Appelez les secours ensuite."
+  },
+  {
+    "id": 1077,
+    "category": "Passages à niveau",
+    "difficulty": "Difficile",
+    "text": "Quels comportements sont interdits à l'approche d'un passage à niveau ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Dépasser", "S'arrêter sur la voie ferrée", "Stationner à moins de 10 m", "Changer de file"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces comportements sont interdits à l'approche d'un passage à niveau."
+  },
+  {
+    "id": 1078,
+    "category": "Passages à niveau",
+    "difficulty": "Moyen",
+    "text": "Combien de temps avant le passage d'un train les barrières s'abaissent-elles environ ?",
+    "imageUrl": null,
+    "options": ["10 secondes", "30 secondes", "1 minute", "5 minutes"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les barrières s'abaissent environ 30 secondes avant le passage du train. Ne vous engagez jamais si le feu clignote."
+  },
+  {
+    "id": 1079,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Difficile",
+    "text": "Quels facteurs influencent le taux d'alcoolémie ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Le poids", "Le sexe", "La prise d'aliments", "La fatigue"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces facteurs influencent l'alcoolémie : poids, sexe, alimentation, fatigue. Le seul moyen sûr = 0 alcool."
+  },
+  {
+    "id": 1080,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quelles sont les sanctions pour usage du téléphone + infraction simultanée ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["3 points pour le téléphone", "Points de l'infraction associée", "Suspension possible du permis", "Cumul des deux infractions"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Le cumul est possible : 3 points (téléphone) + les points de l'infraction associée. Suspension possible si 6 points ou plus cumulés."
+  }
+]
