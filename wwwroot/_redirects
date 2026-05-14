@@ -1,0 +1,3 @@
+# SPA fallback — toutes les routes non trouvées servent index.html
+# Cloudflare Pages: [source] [destination] [status]
+/*    /index.html   200
