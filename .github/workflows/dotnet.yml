@@ -1,0 +1,97 @@
+#from https://github.com/ILoveDotNet/ilovedotnet/blob/main/.github/workflows/deployment.yml
+name: build and test and deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  schedule:
+      # Runs every sunday 05.00 PM UTC (22.30 PM IST Equivalent). Pattern - "*(0-59 minute) *(0-23 hour) *(1-31 day of the month) *(1-12 month) *(0-6 day of the week)"
+      - cron: '0 17 * * 0'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-test-deploy-blazor:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+
+      # Install dotnet wasm buildtools workload
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+
+      # Restore Dependencies
+      - name: Restore dependencies
+        run: dotnet restore ./CodeDeLaRoute.csproj
+
+      # Check Vulnerable Nuget Packages
+      - name: Checking Vulnerable Nuget Packages
+        run: |
+          dotnet list ./CodeDeLaRoute.csproj package --vulnerable --include-transitive --format=json > list.json
+          if jq -cre '.projects | .. | .severity? // empty | select(test("Critical|High"))' list.json; then
+            echo 'Vulnerabilities found! Exiting...'
+            jq . list.json
+            exit 1
+          else
+            echo 'No vulnerabilities found!'
+          fi
+        
+      # Check Outdated Nuget Packages
+      - name: Checking Outdated Nuget Packages
+        run: dotnet list ./CodeDeLaRoute.csproj package --outdated --include-transitive --format json
+        
+      # Check Deprecated Nuget Packages
+      - name: Checking Deprecated Nuget Packages
+        run: dotnet list ./CodeDeLaRoute.csproj package --deprecated --include-transitive --format json
+
+      # Build Blazor Project
+      - name: Build Blazor Project
+        run: dotnet build ./CodeDeLaRoute.csproj --configuration Release --no-restore
+        
+      # Install dotnet report generator
+      - name: Install .NET Report Generator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+        
+
+      # Publishes Blazor project to the release-folder
+      - name: Publish Blazor Project
+        run: dotnet publish ./CodeDeLaRoute.slnx -c:Release -p:GHPages=true -o CodeDeLaRoute --nologo
+        
+      # touch 404.html & .nojekyll # Supprime la dernière ligne du fichier # Ajoute la date et l'heure actuelles à la fin du fichier
+      - name: touch 404.html & .nojekyll
+        run: |
+            touch ./wwwroot/.nojekyll
+            cp ./wwwroot/index.html CodeDeLaRoute/wwwroot/404.html    
+            sed -i '$d' ./wwwroot/README.md  
+            echo "Dernière modification: $(date +"%Y-%m-%dT%I:%M:%pZ")" >> ./wwwroot/README.md 
+
+
+      # Rewrite base href        
+      - name: Rewrite base href
+        uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
+        with:
+          html_path: ./wwwroot/index.html
+          base_href: /        
+      # Commit Blazor Web App to GitHub Pages
+      - name: Commit wwwroot to GitHub Pages
+        if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: ./wwwroot
