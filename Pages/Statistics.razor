@@ -1,0 +1,175 @@
+@page "/statistics"
+@using CodeDeLaRoute.Services
+@inject StatisticsService StatsService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<PageTitle>Statistiques - Code de la Route</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-6" Style="font-weight:800;">
+    📊 Mes Statistiques
+</MudText>
+
+@if (stats == null)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-8" />
+}
+else if (stats.TotalQuizzes == 0)
+{
+    <MudPaper Class="pa-8 mt-4 text-center" Elevation="2" Style="border-radius:16px;">
+        <MudIcon Icon="@Icons.Material.Filled.Assessment" Style="font-size:4rem; color: var(--mud-palette-text-disabled);" />
+        <MudText Typo="Typo.h5" Class="mt-4 mb-2">Aucune statistique pour le moment</MudText>
+        <MudText Typo="Typo.body1" Color="Color.Secondary" Class="mb-4">
+            Lancez un quiz pour commencer à suivre votre progression !
+        </MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.PlayArrow"
+                   OnClick="GoHome">
+            Lancer un quiz
+        </MudButton>
+    </MudPaper>
+}
+else
+{
+    @* --- Résumé global --- *@
+    <MudGrid Spacing="4" Class="mb-6">
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.Quiz" Label="Quiz effectués" Value="@stats.TotalQuizzes.ToString()" Color="Color.Primary" />
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.TrendingUp" Label="Score moyen" Value="@($"{stats.AverageScore:0.#}%")" Color="Color.Warning" />
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.EmojiEvents" Label="Meilleur score" Value="@($"{stats.BestScore:0.#}%")" Color="Color.Success" />
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.Help" Label="Questions répondues" Value="@stats.TotalQuestionsAnswered.ToString()" Color="Color.Secondary" />
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.CheckCircle" Label="Précision globale" Value="@($"{stats.GlobalAccuracy:0.#}%")" Color="Color.Tertiary" />
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <StatCard Icon="@Icons.Material.Filled.Timer" Label="Temps total" Value="@stats.FormattedTotalTime" Color="Color.Info" />
+        </MudItem>
+    </MudGrid>
+
+    @* --- Progression par catégorie --- *@
+    <MudText Typo="Typo.h5" Class="mb-3 mt-4" Style="font-weight:700;">Par catégorie</MudText>
+    <MudPaper Class="pa-4 mb-6" Elevation="1" Style="border-radius:16px;">
+        @foreach (var cat in stats.CategoryStats)
+        {
+            var scoreColor = cat.AverageScore >= 80 ? Color.Success : cat.AverageScore >= 50 ? Color.Warning : Color.Error;
+            <div class="d-flex align-center mb-3">
+                <MudText Typo="Typo.body2" Style="min-width:160px; font-weight:600;">@GetCategoryIcon(cat.Category) @cat.Category</MudText>
+                <div style="flex:1; margin: 0 12px;">
+                    <MudProgressLinear Color="@scoreColor" Value="@cat.AverageScore" Size="Size.Small"
+                                       Style="border-radius:8px;" />
+                </div>
+                <MudText Typo="Typo.body2" Style="min-width: 60px; text-align:right; font-weight:600;">
+                    @($"{cat.AverageScore:0.#}%")
+                </MudText>
+                <MudText Typo="Typo.caption" Color="Color.Secondary" Style="min-width: 40px; text-align:right;">
+                    @cat.QuizCount q.
+                </MudText>
+            </div>
+        }
+    </MudPaper>
+
+    @* --- Historique --- *@
+    <div class="d-flex align-center justify-space-between mb-3 mt-6">
+        <MudText Typo="Typo.h5" Style="font-weight:700;">Historique</MudText>
+        <MudButton Variant="Variant.Text" Color="Color.Error" Size="Size.Small"
+                   StartIcon="@Icons.Material.Filled.DeleteOutline"
+                   OnClick="ClearHistory">
+            Effacer
+        </MudButton>
+    </div>
+
+    <MudPaper Class="pa-0" Elevation="1" Style="border-radius:16px; overflow:hidden;">
+        <MudTable Items="@history" Hover="true" Striped="true" Dense="false" Breakpoint="Breakpoint.Sm"
+                  SortLabel="Trier" Elevation="0">
+            <HeaderContent>
+                <MudTh>Date</MudTh>
+                <MudTh>Catégorie</MudTh>
+                <MudTh>Score</MudTh>
+                <MudTh>Résultat</MudTh>
+                <MudTh>Durée</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Date">@context.FormattedDate</MudTd>
+                <MudTd DataLabel="Catégorie">
+                    <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined"
+                             Color="@(context.Category == "Toutes" ? Color.Default : Color.Primary)">
+                        @GetCategoryIcon(context.Category) @context.Category
+                    </MudChip>
+                </MudTd>
+                <MudTd DataLabel="Score">
+                    <div class="d-flex align-center gap-2">
+                        <MudProgressCircular Color="@GetScoreColor(context.Score)" Size="Size.Small"
+                                             Value="@context.Score" Style="width:36px; height:36px;" />
+                        <MudText Typo="Typo.body2" Style="font-weight:700;">@($"{context.Score:0.#}%")</MudText>
+                    </div>
+                </MudTd>
+                <MudTd DataLabel="Résultat">
+                    <MudText Typo="Typo.body2">
+                        <span style="color:var(--mud-palette-success); font-weight:600;">@context.CorrectAnswers</span>
+                        <span style="color:var(--mud-palette-text-secondary);"> / @context.TotalQuestions</span>
+                    </MudText>
+                </MudTd>
+                <MudTd DataLabel="Durée">@context.FormattedDuration</MudTd>
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager PageSizeOptions="new int[] { 10, 20, 50 }" />
+            </PagerContent>
+        </MudTable>
+    </MudPaper>
+}
+
+@code {
+    private GlobalStats? stats;
+    private List<QuizHistoryEntry> history = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        stats = await StatsService.GetGlobalStatsAsync();
+        history = await StatsService.GetHistoryAsync();
+        history.Reverse(); // plus récent en premier
+    }
+
+    private async Task ClearHistory()
+    {
+        await StatsService.ClearHistoryAsync();
+        await LoadDataAsync();
+    }
+    private void GoHome()
+    {
+        Navigation.NavigateTo("");
+    }
+    private string GetCategoryIcon(string category) => category switch
+    {
+        "Signalisation" => "🚦",
+        "Priorité" => "⚠️",
+        "Vitesse" => "⏱️",
+        "Alcool et Stupéfiants" => "🍷",
+        "Stationnement" => "🅿️",
+        "Éclairage" => "💡",
+        "Sécurité" => "🛡️",
+        "Croisement et Dépassement" => "↔️",
+        "Environnement" => "🌿",
+        "Piétons et Cyclistes" => "🚶",
+        "Premiers Secours" => "🏥",
+        "Permis à Points" => "📝",
+        "Conditions Météo" => "🌧️",
+        "Toutes" => "🎲",
+        _ => "📋"
+    };
+
+    private Color GetScoreColor(double score) => score >= 80 ? Color.Success : score >= 50 ? Color.Warning : Color.Error;
+
+    public void Dispose() { }
+}

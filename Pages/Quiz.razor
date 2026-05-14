@@ -1,0 +1,452 @@
+@page "/quiz"
+@using CodeDeLaRoute.Models
+@using CodeDeLaRoute.Services
+@inject QuestionService QuestionService
+@inject StatisticsService StatsService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<PageTitle>Quiz - Code de la Route</PageTitle>
+
+@if (questions == null || questions.Count == 0)
+{
+    <MudAlert Severity="Severity.Warning" Class="mt-8">
+        Aucune question disponible. <MudLink Href="/">Retour à l&apos;accueil</MudLink>
+    </MudAlert>
+}
+else if (showResults)
+{
+    <MudPaper Class="pa-6 mt-4" Elevation="3" Style="border-radius:16px; text-align:center;">
+        <MudText Typo="Typo.h4" Style="font-weight:800;">📊 Résultats</MudText>
+
+        @if (ExamMode && ScorePercent >= 70)
+        {
+            <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
+                ✅ Vous avez réussi l&apos;examen ! (max 5 fautes tolérées)
+            </MudAlert>
+        }
+        else if (ExamMode && ScorePercent < 70)
+        {
+            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
+                ❌ Vous avez dépassé les 5 fautes. Continuez à vous entraîner !
+            </MudAlert>
+        }
+
+        <div class="d-flex justify-center mt-6 mb-4">
+            <MudProgressCircular Color="@GetScoreColor()" Size="Size.Large" Value="@ScorePercent"
+                                 Style="width:160px; height:160px;">
+                <ChildContent>
+                    <div>
+                        <MudText Typo="Typo.h4" Style="font-weight:900;">@correctCount/@questions.Count</MudText>
+                        <MudText Typo="Typo.caption">@ScorePercent.ToString("0")%</MudText>
+                    </div>
+                </ChildContent>
+            </MudProgressCircular>
+        </div>
+
+        <MudText Typo="Typo.h5" Class="mb-4" Style="font-weight:700;">@GetResultMessage()</MudText>
+
+        <MudGrid Spacing="3" Class="mb-4">
+            <MudItem xs="4">
+                <MudPaper Class="pa-3" Elevation="1" Style="border-radius:12px;">
+                    <MudText Typo="Typo.h4" Color="Color.Success" Style="font-weight:800;">@correctCount</MudText>
+                    <MudText Typo="Typo.caption">CORRECTES</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="4">
+                <MudPaper Class="pa-3" Elevation="1" Style="border-radius:12px;">
+                    <MudText Typo="Typo.h4" Color="Color.Error" Style="font-weight:800;">@(questions.Count - correctCount)</MudText>
+                    <MudText Typo="Typo.caption">INCORRECTES</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="4">
+                <MudPaper Class="pa-3" Elevation="1" Style="border-radius:12px;">
+                    <MudText Typo="Typo.h4" Color="Color.Primary" Style="font-weight:800;">@FormatDuration()</MudText>
+                    <MudText Typo="Typo.caption">DURÉE</MudText>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+
+        @if (showReview)
+        {
+            <MudDivider Class="my-4" />
+            @for (int i = 0; i < questionResults.Count; i++)
+            {
+                var qr = questionResults[i];
+                var borderColor = qr.IsCorrect ? "var(--mud-palette-success)" : "var(--mud-palette-error)";
+                <MudPaper Class="pa-4 mb-3 text-left" Elevation="1"
+                          Style="@($"border-radius:12px; border-left: 4px solid {borderColor};")">
+                    <MudText Typo="Typo.subtitle1" Style="font-weight:600;">@(i+1). @qr.Question.Text</MudText>
+                    @for (int j = 0; j < qr.Question.Options.Count; j++)
+                    {
+                        var wasSelected = qr.UserAnswerIndices.Contains(j);
+                        var isCorrectOpt = qr.Question.CorrectAnswerIndices.Contains(j);
+                        var icon = wasSelected && isCorrectOpt ? Icons.Material.Filled.CheckCircle
+                                 : wasSelected && !isCorrectOpt ? Icons.Material.Filled.Cancel
+                                 : isCorrectOpt ? Icons.Material.Filled.RadioButtonUnchecked
+                                 : Icons.Material.Filled.RadioButtonUnchecked;
+                        var clr = wasSelected && isCorrectOpt ? Color.Success
+                                : wasSelected && !isCorrectOpt ? Color.Error
+                                : isCorrectOpt ? Color.Success : Color.Default;
+
+                        <div class="d-flex align-center gap-2 mt-1">
+                            <MudIcon Icon="@icon" Color="@clr" Size="Size.Small" />
+                            <MudText Typo="Typo.body2"
+                                     Style="@(isCorrectOpt ? "font-weight:600;" : "")"
+                                     Color="@clr">
+                                @qr.Question.Options[j]
+                            </MudText>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(qr.Question.Explanation))
+                    {
+                        <MudAlert Severity="Severity.Info" Variant="Variant.Text" Class="mt-2 pa-2">
+                            💡 @qr.Question.Explanation
+                        </MudAlert>
+                    }
+                </MudPaper>
+            }
+        }
+
+        <div class="d-flex justify-center gap-3 mt-4">
+            <MudButton Variant="Variant.Text" OnClick="() => showReview = !showReview"
+                       StartIcon="@Icons.Material.Filled.RateReview">
+                @(showReview ? "Cacher le détail" : "Voir le détail")
+            </MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="RestartQuiz"
+                       StartIcon="@Icons.Material.Filled.Refresh">
+                Nouveau quiz
+            </MudButton>
+            <MudButton Variant="Variant.Outlined" OnClick="GoHome"
+                       StartIcon="@Icons.Material.Filled.Home">
+                Accueil
+            </MudButton>
+        </div>
+    </MudPaper>
+}
+else
+{
+    var q = CurrentQuestion;
+    var diffColor = q.Difficulty switch
+    {
+        DifficultyLevel.Facile => Color.Success,
+        DifficultyLevel.Moyen => Color.Warning,
+        DifficultyLevel.Difficile => Color.Error,
+        _ => Color.Default
+    };
+
+    @* --- Header --- *@
+    <div class="d-flex align-center justify-space-between mb-2 mt-4 gap-2 flex-wrap">
+        <MudText Typo="Typo.subtitle2">
+            Question <strong>@(currentIndex + 1)</strong> / @questions.Count
+        </MudText>
+        <MudChip T="string" Size="Size.Small" Variant="MudBlazor.Variant.Outlined"
+                 Color="@(ExamMode && Countdown.TotalMinutes < 5 ? Color.Error : Color.Default)"
+                 Icon="@Icons.Material.Filled.Timer">
+            @FormatTimeDisplay()
+        </MudChip>
+    </div>
+
+    <div class="d-flex align-center gap-2 mb-3">
+        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary">
+            @GetCategoryIcon(q.Category) @q.Category
+        </MudChip>
+        <MudChip T="string" Size="Size.Small" Variant="Variant.Filled" Color="@diffColor">
+            @q.Difficulty
+        </MudChip>
+        @if (q.IsMultipleChoice)
+        {
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Color="Color.Info">
+                Choix multiple (@q.CorrectAnswerIndices.Count bonnes réponses)
+            </MudChip>
+        }
+    </div>
+
+    @* --- Progress bar --- *@
+    <MudProgressLinear Value="@((double)(currentIndex + 1) / questions.Count * 100)" Color="Color.Primary"
+                       Size="Size.Small" Class="mb-4" Style="border-radius:8px;" />
+
+    @* --- Question card --- *@
+    <MudPaper Class="pa-6 mb-4" Elevation="3" Style="border-radius:16px;">
+        <MudText Typo="Typo.h6" Class="mb-4" Style="font-weight:600; line-height:1.5;">
+            @q.Text
+        </MudText>
+
+        @if (!string.IsNullOrEmpty(q.ImageUrl))
+        {
+            <MudImage Src="@q.ImageUrl" Elevation="2" Class="mb-4" Style="max-width:100%; border-radius:12px;" />
+        }
+
+        <MudStack Spacing="2">
+            @for (int i = 0; i < q.Options.Count; i++)
+            {
+                var idx = i;
+                <MudButton Variant="@GetOptionVariant(idx)" Color="@GetOptionColor(idx)"
+                           FullWidth="true" Size="Size.Large"
+                           Style="justify-content:flex-start; text-transform:none; font-weight:500; border-radius:12px;"
+                           OnClick="() => SelectOption(idx)">
+                    <span style="margin-right:8px; opacity:0.6;">@((char)('A' + idx))</span>
+                    @q.Options[idx]
+                </MudButton>
+            }
+        </MudStack>
+
+        @if (q.IsMultipleChoice && !answered)
+        {
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" FullWidth="true"
+                       Class="mt-4" Style="font-weight:600;"
+                       Disabled="@(selectedIndices.Count == 0)"
+                       OnClick="ValidateMultiple">
+                Valider ma réponse
+            </MudButton>
+        }
+
+        @if (answered)
+        {
+            <MudAlert Severity="@(selectedIndices.SetEquals(q.CorrectAnswerIndices) ? Severity.Success : Severity.Error)"
+                      Variant="Variant.Outlined" Class="mt-4" Style="border-radius:12px;">
+                @if (!string.IsNullOrEmpty(q.Explanation))
+                {
+                    <MudText Typo="Typo.body2">💡 @q.Explanation</MudText>
+                }
+            </MudAlert>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true"
+                       Size="Size.Large" Class="mt-2" OnClick="NextQuestion">
+                @(currentIndex < questions.Count - 1 ? "Suivante" : "📊 Résultats")
+            </MudButton>
+        }
+    </MudPaper>
+}
+
+@code {
+    private List<Question> questions = new();
+    private int currentIndex;
+    private HashSet<int> selectedIndices = new();
+    private bool answered;
+    private bool showResults;
+    private bool showReview;
+    private int correctCount;
+    private List<QuestionResult> questionResults = new();
+    private DateTime startTime;
+    private DateTime endTime;
+    private System.Threading.Timer? timer;
+
+    private int Count => int.TryParse(Navigation.GetQueryParam("count"), out var c) ? Math.Clamp(c, 1, 80) : 10;
+    private string? Category => Navigation.GetQueryParam("category");
+    private string Vehicle => Navigation.GetQueryParam("vehicle") ?? "auto";
+    private bool ExamMode => Navigation.GetQueryParam("exam")?.ToLower() == "true";
+    private TimeSpan Countdown => ExamMode ? TimeSpan.FromMinutes(40) - (DateTime.Now - startTime) : TimeSpan.Zero;
+    private bool TimeIsUp => ExamMode && Countdown <= TimeSpan.Zero;
+
+    private Question CurrentQuestion => questions[currentIndex];
+
+    protected override async Task OnInitializedAsync()
+    {
+        questions = await QuestionService.GetRandomQuizAsync(Count, Category);
+        startTime = DateTime.Now;
+        timer = new System.Threading.Timer(_ =>
+        {
+            InvokeAsync(() =>
+            {
+                if (ExamMode && TimeIsUp && !showResults)
+                {
+                    ForceEndQuiz();
+                }
+                StateHasChanged();
+            });
+        }, null, 0, 1000);
+    }
+
+    private void ForceEndQuiz()
+    {
+        if (showResults) return;
+        endTime = DateTime.Now;
+        timer?.Dispose();
+        // Mark remaining unanswered questions as wrong
+        for (int i = currentIndex; i < questions.Count; i++)
+        {
+            questionResults.Add(new QuestionResult
+            {
+                Question = questions[i],
+                UserAnswerIndices = new(),
+                IsCorrect = false
+            });
+        }
+        showResults = true;
+        _ = SaveQuizResult();
+    }
+
+    private async Task SaveQuizResult()
+    {
+        var result = new QuizResult
+        {
+            TotalQuestions = questions.Count,
+            CorrectAnswers = correctCount,
+            WrongAnswers = questions.Count - correctCount,
+            Details = questionResults,
+            Duration = endTime - startTime
+        };
+        var label = Vehicle == "moto" ? $"Moto: {Category ?? "Toutes"}" : Category;
+        await StatsService.SaveResultAsync(result, label, questions.Count);
+    }
+
+    private void SelectOption(int idx)
+    {
+        if (answered) return;
+        if (CurrentQuestion.IsMultipleChoice)
+        {
+            if (!selectedIndices.Add(idx)) selectedIndices.Remove(idx);
+        }
+        else
+        {
+            selectedIndices = new() { idx };
+            CheckAnswer();
+        }
+    }
+
+    private void ValidateMultiple()
+    {
+        if (answered || selectedIndices.Count == 0) return;
+        CheckAnswer();
+    }
+
+    private void CheckAnswer()
+    {
+        answered = true;
+        var isCorrect = selectedIndices.SetEquals(CurrentQuestion.CorrectAnswerIndices);
+        if (isCorrect) correctCount++;
+        questionResults.Add(new QuestionResult
+        {
+            Question = CurrentQuestion,
+            UserAnswerIndices = selectedIndices.ToList(),
+            IsCorrect = isCorrect
+        });
+    }
+
+    private async void NextQuestion()
+    {
+        if (currentIndex < questions.Count - 1)
+        {
+            currentIndex++;
+            answered = false;
+            selectedIndices = new();
+        }
+        else
+        {
+            endTime = DateTime.Now;
+            timer?.Dispose();
+            showResults = true;
+            await SaveQuizResult();
+        }
+    }
+
+    private async void RestartQuiz()
+    {
+        questions = await QuestionService.GetRandomQuizAsync(Count, Category, Vehicle);
+        currentIndex = 0;
+        answered = false;
+        showResults = false;
+        showReview = false;
+        selectedIndices = new();
+        correctCount = 0;
+        questionResults = new();
+        startTime = DateTime.Now;
+        timer = new System.Threading.Timer(_ =>
+        {
+            InvokeAsync(() =>
+            {
+                if (ExamMode && TimeIsUp && !showResults)
+                    ForceEndQuiz();
+                StateHasChanged();
+            });
+        }, null, 0, 1000);
+    }
+
+    private void GoHome() => Navigation.NavigateTo("/");
+
+    private MudBlazor.Variant GetOptionVariant(int idx)
+    {
+        if (!answered) return selectedIndices.Contains(idx) ? MudBlazor.Variant.Filled : MudBlazor.Variant.Outlined;
+        var isSelected = selectedIndices.Contains(idx);
+        var isCorrect = CurrentQuestion.CorrectAnswerIndices.Contains(idx);
+        if (isCorrect || isSelected) return MudBlazor.Variant.Filled;
+        return MudBlazor.Variant.Outlined;
+    }
+
+    private Color GetOptionColor(int idx)
+    {
+        if (!answered) return selectedIndices.Contains(idx) ? Color.Primary : Color.Default;
+        var isSelected = selectedIndices.Contains(idx);
+        var isCorrect = CurrentQuestion.CorrectAnswerIndices.Contains(idx);
+        if (isSelected && isCorrect) return Color.Success;
+        if (isSelected && !isCorrect) return Color.Error;
+        if (isCorrect) return Color.Success;
+        return Color.Default;
+    }
+
+    private Color GetDifficultyColor(DifficultyLevel d) => d switch
+    {
+        DifficultyLevel.Facile => Color.Success,
+        DifficultyLevel.Moyen => Color.Warning,
+        DifficultyLevel.Difficile => Color.Error,
+        _ => Color.Default
+    };
+
+    private Color GetScoreColor() => ScorePercent >= 80 ? Color.Success : ScorePercent >= 50 ? Color.Warning : Color.Error;
+
+    private double ScorePercent => questions.Count > 0 ? (double)correctCount / questions.Count * 100 : 0;
+
+    private string GetResultMessage() => ScorePercent switch
+    {
+        >= 90 => "🎉 Excellent ! Vous êtes prêt pour l&apos;examen !",
+        >= 75 => "👍 Bon travail ! Encore un peu d&apos;effort !",
+        >= 50 => "😊 Pas mal, mais révisez encore !",
+        _ => "📚 Il faut réviser davantage. Courage !"
+    };
+
+    private string FormatTimeDisplay()
+    {
+        if (ExamMode)
+        {
+            var cd = Countdown;
+            return cd.TotalSeconds > 0
+                ? $"{(int)cd.TotalMinutes:D2}:{cd.Seconds:D2}"
+                : "00:00";
+        }
+        var elapsed = DateTime.Now - startTime;
+        return $"{(int)elapsed.TotalMinutes:D2}:{elapsed.Seconds:D2}";
+    }
+
+    private string FormatDuration()
+    {
+        var d = endTime - startTime;
+        return $"{(int)d.TotalMinutes:D2}:{d.Seconds:D2}";
+    }
+
+    private string GetCategoryIcon(string category) => category switch
+    {
+        "Signalisation" => "🚦",
+        "Priorité" => "⚠️",
+        "Vitesse" => "⏱️",
+        "Alcool et Stupéfiants" => "🍷",
+        "Stationnement" => "🅿️",
+        "Éclairage" => "💡",
+        "Sécurité" => "🛡️",
+        "Croisement et Dépassement" => "↔️",
+        "Environnement" => "🌿",
+        "Piétons et Cyclistes" => "🚶",
+        "Premiers Secours" => "🏥",
+        "Permis à Points" => "📝",
+        "Conditions Météo" => "🌧️",
+        "Équipement" => "🪖",
+        "Maîtrise" => "🎯",
+        "Conduite" => "🏍️",
+        "Mécanique" => "🔧",
+        "Permis" => "📝",
+        "Passager" => "🧑‍🤝‍🧑",
+        _ => "📋"
+    };
+
+    public void Dispose() => timer?.Dispose();
+}

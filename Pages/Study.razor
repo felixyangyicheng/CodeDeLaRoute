@@ -1,0 +1,257 @@
+@page "/study"
+@using CodeDeLaRoute.Models
+@using CodeDeLaRoute.Services
+@inject QuestionService QuestionService
+@inject NavigationManager Navigation
+
+<PageTitle>Mode Étude - Code de la Route</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mb-4" Style="font-weight:800;">
+    📖 Mode Étude
+</MudText>
+<MudText Typo="Typo.body1" Color="Color.Secondary" Class="mb-4">
+    Parcourez les questions avec les réponses et explications toujours visibles.
+</MudText>
+
+@* --- Filtres --- *@
+<MudPaper Class="pa-4 mb-4" Elevation="1" Style="border-radius:12px;">
+
+    <MudText Typo="Typo.subtitle2" Class="mb-2">🏍️ Véhicule</MudText>
+    <MudButtonGroup Variant="Variant.Outlined" Class="mb-3">
+        <MudButton Color="@(vehicle == "auto" ? Color.Primary : Color.Default)"
+                   Variant="@(vehicle == "auto" ? Variant.Filled : Variant.Outlined)"
+                   OnClick="SwitchToAuto"
+                   StartIcon="@Icons.Material.Filled.DirectionsCar">
+            Auto
+        </MudButton>
+        <MudButton Color="@(vehicle == "moto" ? Color.Primary : Color.Default)"
+                   Variant="@(vehicle == "moto" ? Variant.Filled : Variant.Outlined)"
+                   OnClick="SwitchToMoto"
+                   StartIcon="@Icons.Material.Filled.TwoWheeler">
+            Moto
+        </MudButton>
+    </MudButtonGroup>
+
+    <MudText Typo="Typo.subtitle2" Class="mb-2">📂 Catégorie</MudText>
+    <MudChipSet T="string" @bind-SelectedValue="selectedCategory"
+                SelectionMode="SelectionMode.SingleSelection" CheckMark="true"
+                Variant="Variant.Outlined" Color="Color.Primary">
+        <MudChip Value="@((string?)null)" Text="🎲 Toutes" Default="true" />
+        @foreach (var cat in categories)
+        {
+            <MudChip Value="@cat" Text="@($"{GetCategoryIcon(cat)} {cat}")" />
+        }
+    </MudChipSet>
+
+    <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">📏 Difficulté</MudText>
+    <MudChipSet T="DifficultyLevel?" @bind-SelectedValue="selectedDifficulty"
+                SelectionMode="SelectionMode.SingleSelection" Variant="Variant.Outlined">
+        <MudChip Value="@((DifficultyLevel?)null)" Text="Toutes" Default="true" />
+        <MudChip Value="@DifficultyLevel.Facile" Text="🟢 Facile" Color="Color.Success" />
+        <MudChip Value="@DifficultyLevel.Moyen" Text="🟠 Moyen" Color="Color.Warning" />
+        <MudChip Value="@DifficultyLevel.Difficile" Text="🔴 Difficile" Color="Color.Error" />
+    </MudChipSet>
+</MudPaper>
+
+@* --- Compteur et navigation --- *@
+<div class="d-flex align-center justify-space-between mb-3">
+    <MudText Typo="Typo.subtitle1">
+        Question <strong>@(currentIndex + 1)</strong> / @filteredQuestions.Count
+    </MudText>
+    <MudButtonGroup Variant="Variant.Outlined" Size="Size.Small">
+        <MudButton StartIcon="@Icons.Material.Filled.Shuffle" OnClick="ShuffleQuestions">
+            Mélanger
+        </MudButton>
+        <MudButton StartIcon="@Icons.Material.Filled.SkipPrevious" OnClick="PreviousQuestion"
+                   Disabled="@(currentIndex == 0)">
+            Précédent
+        </MudButton>
+        <MudButton EndIcon="@Icons.Material.Filled.SkipNext" OnClick="NextQuestion"
+                   Disabled="@(currentIndex >= filteredQuestions.Count - 1)">
+            Suivant
+        </MudButton>
+    </MudButtonGroup>
+</div>
+
+@if (filteredQuestions.Count == 0)
+{
+    <MudPaper Class="pa-8 mt-4 text-center" Elevation="2" Style="border-radius:16px;">
+        <MudIcon Icon="@Icons.Material.Filled.SearchOff" Style="font-size:4rem; color: var(--mud-palette-text-disabled);" />
+        <MudText Typo="Typo.h5" Class="mt-4">Aucune question trouvée</MudText>
+        <MudText Typo="Typo.body1" Color="Color.Secondary">
+            Changez les filtres pour voir plus de questions.
+        </MudText>
+    </MudPaper>
+}
+else
+{
+    var q = filteredQuestions[currentIndex];
+    var diffColor = q.Difficulty switch
+    {
+        DifficultyLevel.Facile => Color.Success,
+        DifficultyLevel.Moyen => Color.Warning,
+        DifficultyLevel.Difficile => Color.Error,
+        _ => Color.Default
+    };
+
+    <MudPaper Class="pa-6 mb-3" Elevation="3" Style="border-radius:16px;">
+        @* --- En-tête question --- *@
+        <div class="d-flex align-center gap-2 mb-4">
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary">
+                @GetCategoryIcon(q.Category) @q.Category
+            </MudChip>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Filled" Color="@diffColor">
+                @(q.IsMultipleChoice ? " Choix multiple" : " Choix unique")
+            </MudChip>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Color="@diffColor">
+                @q.Difficulty
+            </MudChip>
+        </div>
+
+        @* --- Texte de la question --- *@
+        <MudText Typo="Typo.h6" Class="mb-4" Style="font-weight:600; line-height:1.5;">
+            @q.Text
+        </MudText>
+
+        @* --- Image (si présente) --- *@
+        @if (!string.IsNullOrEmpty(q.ImageUrl))
+        {
+            <MudImage Src="@q.ImageUrl" Elevation="2" Class="mb-4"
+                      Style="max-width:100%; border-radius:12px;" />
+        }
+
+        @* --- Options --- *@
+        <MudStack Spacing="2" Class="mb-4">
+            @for (int i = 0; i < q.Options.Count; i++)
+            {
+                var isCorrect = q.CorrectAnswerIndices.Contains(i);
+                <MudPaper Class="pa-3 d-flex align-center gap-3" Elevation="(isCorrect ? 2 : 0)"
+                          Style="@($"border-radius:12px; border: 2px solid {(isCorrect ? "var(--mud-palette-success)" : "var(--mud-palette-divider)")}; background: {(isCorrect ? "color-mix(in srgb, var(--mud-palette-success) 8%, transparent)" : "transparent")};")">
+                    <MudIcon Icon="@(isCorrect ? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.RadioButtonUnchecked)"
+                             Color="@(isCorrect ? Color.Success : Color.Default)"
+                             Size="Size.Medium" />
+                    <MudText Typo="Typo.body1" Style="@(isCorrect ? "font-weight:600; color: var(--mud-palette-success);" : "")">
+                        @q.Options[i]
+                    </MudText>
+                    @if (isCorrect)
+                    {
+                        <MudChip T="string" Size="Size.Small" Color="Color.Success" Variant="Variant.Filled">
+                            Bonne réponse
+                        </MudChip>
+                    }
+                </MudPaper>
+            }
+        </MudStack>
+
+        @* --- Explication --- *@
+        @if (!string.IsNullOrEmpty(q.Explanation))
+        {
+            <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="mb-0"
+                      Style="border-radius:12px;">
+                <MudText Typo="Typo.body2" Style="font-weight:600;">💡 Explication</MudText>
+                <MudText Typo="Typo.body2">@q.Explanation</MudText>
+            </MudAlert>
+        }
+    </MudPaper>
+
+    @* --- Navigation inférieure --- *@
+    <div class="d-flex justify-center gap-3 mt-4 mb-8">
+        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.SkipPrevious"
+                   OnClick="PreviousQuestion" Disabled="@(currentIndex == 0)">
+            Précédent
+        </MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                   EndIcon="@Icons.Material.Filled.SkipNext"
+                   OnClick="NextQuestion" Disabled="@(currentIndex >= filteredQuestions.Count - 1)">
+            Suivant
+        </MudButton>
+    </div>
+}
+
+@code {
+    private List<Question> allQuestions = new();
+    private List<Question> filteredQuestions = new();
+    private List<string> categories = new();
+    private string? selectedCategory;
+    private DifficultyLevel? selectedDifficulty;
+    private int currentIndex;
+    private string vehicle = "auto";
+
+    protected override async Task OnInitializedAsync()
+    {
+        vehicle = Navigation.GetQueryParam("vehicle") ?? "auto";
+        await LoadQuestionsAsync(vehicle);
+    }
+
+    private async Task LoadQuestionsAsync(string v)
+    {
+        allQuestions = await QuestionService.GetAllQuestionsAsync(v);
+        categories = await QuestionService.GetCategoriesAsync(v);
+        ApplyFilters();
+    }
+
+    private async Task SwitchToAuto() => await SwitchVehicle("auto");
+    private async Task SwitchToMoto() => await SwitchVehicle("moto");
+
+    private async Task SwitchVehicle(string v)
+    {
+        vehicle = v;
+        selectedCategory = null;
+        await LoadQuestionsAsync(v);
+    }
+
+    private void ApplyFilters()
+    {
+        var query = allQuestions.AsEnumerable();
+
+        if (selectedCategory != null)
+            query = query.Where(q => q.Category == selectedCategory);
+
+        if (selectedDifficulty != null)
+            query = query.Where(q => q.Difficulty == selectedDifficulty.Value);
+
+        filteredQuestions = query.ToList();
+        currentIndex = 0;
+    }
+
+    private void PreviousQuestion()
+    {
+        if (currentIndex > 0) currentIndex--;
+    }
+
+    private void NextQuestion()
+    {
+        if (currentIndex < filteredQuestions.Count - 1) currentIndex++;
+    }
+
+    private void ShuffleQuestions()
+    {
+        var rng = new Random();
+        filteredQuestions = filteredQuestions.OrderBy(_ => rng.Next()).ToList();
+        currentIndex = 0;
+    }
+
+    private string GetCategoryIcon(string category) => category switch
+    {
+        "Signalisation" => "🚦",
+        "Priorité" => "⚠️",
+        "Vitesse" => "⏱️",
+        "Alcool et Stupéfiants" => "🍷",
+        "Stationnement" => "🅿️",
+        "Éclairage" => "💡",
+        "Sécurité" => "🛡️",
+        "Croisement et Dépassement" => "↔️",
+        "Environnement" => "🌿",
+        "Piétons et Cyclistes" => "🚶",
+        "Premiers Secours" => "🏥",
+        "Permis à Points" => "📝",
+        "Conditions Météo" => "🌧️",
+        "Équipement" => "🪖",
+        "Maîtrise" => "🎯",
+        "Conduite" => "🏍️",
+        "Mécanique" => "🔧",
+        "Permis" => "📝",
+        "Passager" => "🧑‍🤝‍🧑",
+        _ => "📋"
+    };
+}

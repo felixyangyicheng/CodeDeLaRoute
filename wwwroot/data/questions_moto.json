@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "category": "Équipement",
+    "difficulty": "Facile",
+    "text": "Le port du casque est obligatoire pour :",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Le conducteur uniquement", "Le conducteur et le passager", "Le passager uniquement", "Aucun des deux hors agglomération"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le port du casque homologué est obligatoire pour le conducteur ET le passager, en toutes circonstances."
+  },
+  {
+    "id": 2,
+    "category": "Équipement",
+    "difficulty": "Facile",
+    "text": "Quel équipement est obligatoire pour circuler à moto ?",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Casque uniquement", "Casque + gants certifiés", "Casque + gants + blouson", "Casque + gants + blouson + gilet airbag"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le casque homologué et les gants certifiés CE sont obligatoires. Le blouson et le gilet airbag sont fortement recommandés mais pas obligatoires."
+  },
+  {
+    "id": 3,
+    "category": "Équipement",
+    "difficulty": "Moyen",
+    "text": "Un casque doit être remplacé après :",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Un choc même léger", "5 ans d'utilisation", "Une chute d'un mètre", "Uniquement si fissuré"],
+    "correctAnswerIndices": [0],
+    "explanation": "Un casque doit être remplacé après tout choc, même léger. La structure interne peut être endommagée sans signe extérieur visible."
+  },
+  {
+    "id": 4,
+    "category": "Équipement",
+    "difficulty": "Moyen",
+    "text": "Quelle norme doit figurer sur un gant de moto homologué ?",
+    "imageUrl": null,
+    "options": ["NF", "CE", "EN 13594", "ISO 9001"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les gants de moto doivent porter le marquage CE pour être conformes à la réglementation."
+  },
+  {
+    "id": 5,
+    "category": "Équipement",
+    "difficulty": "Difficile",
+    "text": "Quels équipements améliorent la visibilité du motard ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&fit=crop",
+    "options": ["Gilet réfléchissant", "Feux diurnes allumés", "Casque de couleur vive", "Autocollants rétroréfléchissants sur le casque"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces éléments améliorent la visibilité du motard : gilet, feux diurnes, casque clair, autocollants rétroréfléchissants."
+  },
+  {
+    "id": 6,
+    "category": "Maîtrise",
+    "difficulty": "Facile",
+    "text": "Pour freiner efficacement à moto, vous devez utiliser :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Le frein arrière uniquement", "Le frein avant uniquement", "Les deux freins simultanément", "Le frein moteur uniquement"],
+    "correctAnswerIndices": [2],
+    "explanation": "Utilisez les deux freins simultanément : 70% de la puissance de freinage vient de l'avant, 30% de l'arrière."
+  },
+  {
+    "id": 7,
+    "category": "Maîtrise",
+    "difficulty": "Moyen",
+    "text": "Sur chaussée mouillée, la distance de freinage à moto est multipliée par :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["1,5", "2", "3", "4"],
+    "correctAnswerIndices": [1],
+    "explanation": "Sur chaussée mouillée, la distance de freinage est multipliée par 2 par rapport au sec."
+  },
+  {
+    "id": 8,
+    "category": "Maîtrise",
+    "difficulty": "Moyen",
+    "text": "En virage, le regard du motard doit être dirigé :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Vers l'intérieur du virage", "Vers la sortie du virage", "Droit devant le guidon", "Vers le rétroviseur"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le regard doit toujours être porté vers la sortie du virage, là où vous voulez aller. La moto suit le regard."
+  },
+  {
+    "id": 9,
+    "category": "Maîtrise",
+    "difficulty": "Difficile",
+    "text": "En cas de freinage d'urgence avec ABS, vous devez : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Freiner progressivement", "Actionner les deux freins au maximum", "Débrayer", "Garder la moto droite"],
+    "correctAnswerIndices": [1, 2, 3],
+    "explanation": "Avec l'ABS : freinez au maximum, débrayez et gardez la moto droite. L'ABS évite le blocage des roues."
+  },
+  {
+    "id": 10,
+    "category": "Maîtrise",
+    "difficulty": "Facile",
+    "text": "L'ABS sur une moto permet de :",
+    "imageUrl": null,
+    "options": ["Freiner plus court sur sol sec", "Éviter le blocage des roues", "Accélérer plus vite", "Réduire la consommation"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'ABS (système antiblocage) empêche le blocage des roues lors d'un freinage appuyé, préservant la stabilité."
+  },
+  {
+    "id": 11,
+    "category": "Conduite",
+    "difficulty": "Facile",
+    "text": "En moto, l'angle mort est :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Inexistant", "Plus important qu'en voiture", "Identique à la voiture", "Uniquement à droite"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'angle mort est plus important à moto car le champ de vision dans les rétroviseurs est plus étroit."
+  },
+  {
+    "id": 12,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Par vent latéral fort, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1511316695145-8e0e01ef1469?w=600&fit=crop",
+    "options": ["Accélérer pour stabiliser", "Réduire votre vitesse", "Vous pencher fortement", "Rouler au centre de la voie"],
+    "correctAnswerIndices": [1],
+    "explanation": "Par vent latéral, réduisez votre vitesse et anticipez les rafales, particulièrement aux sorties de tunnel ou de pont."
+  },
+  {
+    "id": 13,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Sur une route gravillonnée, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Accélérer pour passer vite", "Rouler à vitesse réduite et éviter les freinages brusques", "Freiner fortement avant les gravillons", "Rouler sur l'accotement"],
+    "correctAnswerIndices": [1],
+    "explanation": "Sur gravillons, roulez lentement, évitez les freinages et les angles prononcés. L'adhérence est très réduite."
+  },
+  {
+    "id": 14,
+    "category": "Conduite",
+    "difficulty": "Difficile",
+    "text": "Où devez-vous vous placer sur la chaussée à moto ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Toujours à gauche", "La position dépend de la situation", "À droite en virage à droite", "Au centre en ligne droite"],
+    "correctAnswerIndices": [1, 2, 3],
+    "explanation": "La position varie : centre en ville, extérieur en courbe rapide. Adaptez votre placement à la visibilité et la sécurité."
+  },
+  {
+    "id": 15,
+    "category": "Conduite",
+    "difficulty": "Facile",
+    "text": "Les bandes blanches au sol (passages piétons, lignes) sont :",
+    "imageUrl": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&fit=crop",
+    "options": ["Sans danger particulier", "Très glissantes par temps de pluie", "Plus adhérentes que le bitume", "Identiques au reste de la chaussée"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les marquages au sol sont très glissants par temps de pluie. Évitez de freiner ou d'accélérer dessus."
+  },
+  {
+    "id": 16,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "La circulation en interfile est autorisée :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Partout en France", "Uniquement dans certains départements en expérimentation", "Sur toutes les autoroutes", "Jamais"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'interfile est en expérimentation dans certains départements. Hors ces zones, elle est tolérée mais reste techniquement interdite."
+  },
+  {
+    "id": 17,
+    "category": "Conduite",
+    "difficulty": "Difficile",
+    "text": "Lors de la remontée de files, vous devez : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Rouler à 50 km/h max", "Ne pas dépasser 30 km/h de différentiel", "Allumer vos warning", "Klaxonner régulièrement"],
+    "correctAnswerIndices": [0, 1],
+    "explanation": "En interfile : 50 km/h max et pas plus de 30 km/h d'écart avec les véhicules dépassés."
+  },
+  {
+    "id": 18,
+    "category": "Sécurité",
+    "difficulty": "Facile",
+    "text": "Vos feux de croisement à moto doivent être allumés :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["La nuit uniquement", "De jour comme de nuit", "Uniquement hors agglomération", "Seulement sous la pluie"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les feux de croisement sont obligatoires de jour comme de nuit sur toutes les motos depuis 2016."
+  },
+  {
+    "id": 19,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Pour être bien vu des autres usagers, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&fit=crop",
+    "options": ["Porter des vêtements sombres", "Rouler toujours en warning", "Porter des vêtements clairs ou réfléchissants", "Klaxonner fréquemment"],
+    "correctAnswerIndices": [2],
+    "explanation": "Portez des vêtements clairs ou équipés de bandes rétroréfléchissantes pour être visible des autres usagers."
+  },
+  {
+    "id": 20,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quelles sont les principales causes d'accident mortel à moto ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["La vitesse excessive", "L'alcool", "Le refus de priorité d'un tiers", "Les intempéries"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Vitesse excessive, alcool et refus de priorité sont les 3 principales causes. Les conditions météo aggravent mais sont rarement la cause unique."
+  },
+  {
+    "id": 21,
+    "category": "Mécanique",
+    "difficulty": "Facile",
+    "text": "La tension de la chaîne de transmission doit être vérifiée :",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["Une fois par an", "Tous les 500 à 1000 km", "À chaque plein d'essence", "Jamais, elle est automatique"],
+    "correctAnswerIndices": [1],
+    "explanation": "Vérifiez la tension de la chaîne tous les 500 à 1000 km. Une chaîne mal tendue peut sauter ou casser."
+  },
+  {
+    "id": 22,
+    "category": "Mécanique",
+    "difficulty": "Moyen",
+    "text": "Quelle pression de pneus est recommandée pour une moto ?",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["La pression maximale indiquée sur le pneu", "Celle indiquée par le constructeur", "2 bars à l'avant, 2,5 à l'arrière pour toutes les motos", "La pression n'a pas d'importance à moto"],
+    "correctAnswerIndices": [1],
+    "explanation": "Utilisez toujours les pressions recommandées par le constructeur (manuel ou étiquette sur le bras oscillant)."
+  },
+  {
+    "id": 23,
+    "category": "Mécanique",
+    "difficulty": "Moyen",
+    "text": "Des pneus sous-gonflés entraînent :",
+    "imageUrl": null,
+    "options": ["Une meilleure adhérence", "Une usure plus rapide et une tenue de route dégradée", "Une consommation réduite", "Un confort amélioré"],
+    "correctAnswerIndices": [1],
+    "explanation": "Des pneus sous-gonflés s'usent prématurément, dégradent la tenue de route et augmentent la consommation."
+  },
+  {
+    "id": 24,
+    "category": "Mécanique",
+    "difficulty": "Difficile",
+    "text": "Avant un long trajet, quels contrôles sont indispensables ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["Pression des pneus", "Niveau d'huile moteur", "Tension de la chaîne", "Fonctionnement de tous les feux"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces points sont à vérifier avant un long trajet : pneus, huile, chaîne et éclairage."
+  },
+  {
+    "id": 25,
+    "category": "Mécanique",
+    "difficulty": "Facile",
+    "text": "La chaîne de transmission doit être lubrifiée :",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["Jamais", "Régulièrement, surtout après la pluie", "Une fois par an", "Uniquement en hiver"],
+    "correctAnswerIndices": [1],
+    "explanation": "Lubrifiez la chaîne régulièrement (tous les 500 km environ), et systématiquement après avoir roulé sous la pluie."
+  },
+  {
+    "id": 26,
+    "category": "Permis",
+    "difficulty": "Facile",
+    "text": "À partir de quel âge peut-on passer le permis A1 ?",
+    "imageUrl": null,
+    "options": ["14 ans", "16 ans", "18 ans", "20 ans"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le permis A1 (moto légère ≤ 125 cm³, 11 kW max) est accessible dès 16 ans."
+  },
+  {
+    "id": 27,
+    "category": "Permis",
+    "difficulty": "Facile",
+    "text": "Quelle est la cylindrée maximale pour le permis A2 ?",
+    "imageUrl": null,
+    "options": ["125 cm³", "250 cm³", "35 kW (bridable 47,5 ch max)", "Illimitée"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le permis A2 autorise une moto de 35 kW maximum (47,5 ch), issue d'un modèle ne dépassant pas 70 kW d'origine."
+  },
+  {
+    "id": 28,
+    "category": "Permis",
+    "difficulty": "Moyen",
+    "text": "Après 2 ans de permis A2, vous pouvez :",
+    "imageUrl": null,
+    "options": ["Conduire n'importe quelle moto", "Passer la passerelle A2→A (formation 7h)", "Repasser le code uniquement", "Recevoir automatiquement le permis A"],
+    "correctAnswerIndices": [1],
+    "explanation": "Après 2 ans de A2, vous devez suivre une formation passerelle de 7h en auto-école pour obtenir le permis A."
+  },
+  {
+    "id": 29,
+    "category": "Permis",
+    "difficulty": "Moyen",
+    "text": "Le permis A (toutes cylindrées) est accessible à partir de :",
+    "imageUrl": null,
+    "options": ["18 ans", "20 ans", "21 ans", "24 ans"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le permis A est accessible à 20 ans (si titulaire du A2 depuis 2 ans) ou directement à 24 ans par la filière directe."
+  },
+  {
+    "id": 30,
+    "category": "Permis",
+    "difficulty": "Difficile",
+    "text": "Pour le permis A2, quelle puissance maximale la moto d'origine peut-elle avoir avant bridage ?",
+    "imageUrl": null,
+    "options": ["35 kW", "47,5 kW", "70 kW", "95 kW"],
+    "correctAnswerIndices": [2],
+    "explanation": "La moto d'origine ne doit pas excéder 70 kW (95 ch) avant bridage à 35 kW pour être éligible au permis A2."
+  },
+  {
+    "id": 31,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "À moto, le temps de réaction moyen est de :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["0,5 seconde", "1 seconde", "1,5 seconde", "2 secondes"],
+    "correctAnswerIndices": [1],
+    "explanation": "Comme en voiture, le temps de réaction moyen est d'environ 1 seconde. À 50 km/h, vous parcourez 14 mètres avant de réagir."
+  },
+  {
+    "id": 32,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quelles distances parcourez-vous à 90 km/h avant l'arrêt complet ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["25 mètres de temps de réaction", "45 mètres de freinage sur sol sec", "70 mètres au total sur sol sec", "30 mètres au total"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "À 90 km/h : 25 m de réaction + 45 m de freinage = 70 m au total. Sur sol mouillé, la distance de freinage double."
+  },
+  {
+    "id": 33,
+    "category": "Passager",
+    "difficulty": "Facile",
+    "text": "Quel âge minimum pour être passager d'une moto ?",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Pas d'âge minimum", "8 ans", "12 ans", "16 ans"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le passager doit avoir au moins 8 ans (ou 5 ans avec un siège adapté et une ceinture de maintien)."
+  },
+  {
+    "id": 34,
+    "category": "Passager",
+    "difficulty": "Moyen",
+    "text": "Le passager d'une moto doit :",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["S'accrocher au conducteur", "Tenir les poignées de maintien si elles existent", "Poser les pieds sur les repose-pieds", "Ne pas gêner le conducteur"],
+    "correctAnswerIndices": [1, 2, 3],
+    "explanation": "Le passager doit utiliser les poignées de maintien, garder les pieds sur les repose-pieds et rester immobile."
+  },
+  {
+    "id": 35,
+    "category": "Passager",
+    "difficulty": "Difficile",
+    "text": "Avec un passager, le comportement de la moto change : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["La distance de freinage augmente", "L'accélération est plus lente", "La maniabilité est réduite", "L'adhérence est meilleure"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Avec un passager : freinage plus long, accélération réduite, maniabilité dégradée. Adaptez votre conduite."
+  },
+  {
+    "id": 36,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Pour tourner à droite à moto, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Regarder à gauche", "Actionner le clignotant droit et contrôler l'angle mort droit", "Klaxonner", "Accélérer fortement"],
+    "correctAnswerIndices": [1],
+    "explanation": "Avant de tourner : clignotant droit + contrôle visuel de l'angle mort droit. Le regard précède toujours la trajectoire."
+  },
+  {
+    "id": 37,
+    "category": "Vitesse",
+    "difficulty": "Facile",
+    "text": "Quelle est la vitesse maximale pour un motard novice sur autoroute ?",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["100 km/h", "110 km/h", "120 km/h", "130 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "Comme en voiture, le conducteur novice est limité à 110 km/h sur autoroute."
+  },
+  {
+    "id": 38,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Sur route mouillée, un motard doit réduire sa vitesse car :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["L'adhérence est réduite de moitié", "Les freins sont moins efficaces", "La visibilité est réduite", "Toutes ces réponses"],
+    "correctAnswerIndices": [3],
+    "explanation": "Sur route mouillée : adhérence réduite, freinage moins efficace et visibilité dégradée. Réduisez votre vitesse."
+  },
+  {
+    "id": 39,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "En cas d'accident, le gilet airbag (si porté) :",
+    "imageUrl": null,
+    "options": ["Se déclenche automatiquement", "Protège le thorax et la colonne vertébrale", "N'est utile qu'à haute vitesse", "Remplace le casque"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le gilet airbag protège le thorax, l'abdomen et la colonne vertébrale en cas de choc."
+  },
+  {
+    "id": 40,
+    "category": "Conduite",
+    "difficulty": "Difficile",
+    "text": "À l'approche d'un virage sans visibilité, vous devez : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Ralentir avant le virage", "Adapter votre trajectoire", "Regarder le plus loin possible", "Accélérer dans le virage"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Ralentissez avant le virage, adoptez une trajectoire de sécurité et regardez vers la sortie. N'accélérez qu'en sortie de courbe."
+  },
+  {
+    "id": 41,
+    "category": "Équipement",
+    "difficulty": "Moyen",
+    "text": "Le gilet airbag moto est :",
+    "imageUrl": null,
+    "options": ["Obligatoire depuis 2024", "Fortement recommandé mais pas obligatoire", "Obligatoire uniquement sur autoroute", "Réservé à la compétition"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le gilet airbag est fortement recommandé pour sa protection mais n'est pas obligatoire en 2026."
+  },
+  {
+    "id": 42,
+    "category": "Mécanique",
+    "difficulty": "Moyen",
+    "text": "Le niveau d'huile moteur se vérifie :",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["Moteur chaud et moto sur la béquille centrale", "Moteur froid et moto droite", "Moteur en marche", "Une fois par an uniquement"],
+    "correctAnswerIndices": [0],
+    "explanation": "Vérifiez le niveau d'huile moteur chaud, moto sur béquille centrale ou tenue droite, après quelques minutes d'arrêt."
+  },
+  {
+    "id": 43,
+    "category": "Conduite",
+    "difficulty": "Facile",
+    "text": "Les tramways représentent un danger particulier pour les motards car :",
+    "imageUrl": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&fit=crop",
+    "options": ["Ils sont silencieux", "Les rails sont glissants", "Ils circulent vite", "Ils n'ont pas de clignotants"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les rails de tramway sont extrêmement glissants pour les deux-roues, surtout par temps humide. Franchissez-les avec un angle suffisant."
+  },
+  {
+    "id": 44,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Face à un nid-de-poule, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["L'éviter si possible sans danger", "Accélérer pour passer au-dessus", "Freiner brusquement", "Fermer les yeux"],
+    "correctAnswerIndices": [0],
+    "explanation": "Évitez l'obstacle si possible sans danger. Sinon, ralentissez et passez debout sur les repose-pieds pour amortir."
+  },
+  {
+    "id": 45,
+    "category": "Sécurité",
+    "difficulty": "Facile",
+    "text": "La conduite sous l'emprise de stupéfiants à moto est punie de :",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["Une simple amende", "6 points et possible prison", "3 points", "Aucune sanction spécifique moto"],
+    "correctAnswerIndices": [1],
+    "explanation": "Comme en voiture : 6 points retirés, jusqu'à 2 ans de prison et 4500 € d'amende."
+  },
+  {
+    "id": 46,
+    "category": "Vitesse",
+    "difficulty": "Difficile",
+    "text": "Quelles sanctions pour un excès de vitesse ≥ 50 km/h à moto ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["Retrait de 6 points", "Suspension du permis jusqu'à 3 ans", "Confiscation de la moto possible", "Amende de 135 €"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Excès ≥ 50 km/h : 6 points, suspension jusqu'à 3 ans, confiscation possible, amende jusqu'à 1500 €."
+  },
+  {
+    "id": 47,
+    "category": "Équipement",
+    "difficulty": "Facile",
+    "text": "Un casque jet (ouvert) est-il autorisé sur route ?",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Oui, s'il est homologué", "Non, seul l'intégral est autorisé", "Oui, uniquement en ville", "Non, il est interdit"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le casque jet est autorisé s'il est homologué (norme ECE 22-05 ou 22-06). Le casque intégral offre une meilleure protection."
+  },
+  {
+    "id": 48,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "En circulation dense, la position la plus sûre sur la voie est :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["La droite de la voie", "Le centre de la voie", "La gauche de la voie", "Variable selon la situation"],
+    "correctAnswerIndices": [3],
+    "explanation": "Adaptez votre position : gauche pour être vu, droite pour laisser dépasser, centre quand la visibilité est bonne."
+  },
+  {
+    "id": 49,
+    "category": "Mécanique",
+    "difficulty": "Difficile",
+    "text": "Le contrôle technique moto est obligatoire depuis :",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["2022", "2024", "2025", "Il n'est pas encore obligatoire"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le contrôle technique moto est obligatoire depuis avril 2024 pour les motos de plus de 5 ans."
+  },
+  {
+    "id": 50,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Pour traverser un ralentisseur (dos d'âne) à moto :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Passez en accélérant", "Ralentissez et passez debout sur les repose-pieds", "Contournez-le par le trottoir", "Freinez brusquement dessus"],
+    "correctAnswerIndices": [1],
+    "explanation": "Ralentissez avant le dos d'âne, passez-le debout sur les repose-pieds pour amortir, puis réaccélérez."
+  },
+  {
+    "id": 51,
+    "category": "Permis",
+    "difficulty": "Moyen",
+    "text": "L'ETM (Épreuve Théorique Moto) est obligatoire :",
+    "imageUrl": null,
+    "options": ["Pour tous les candidats au permis moto", "Uniquement pour le A2", "Seulement si on n'a pas le permis B", "Pour les plus de 25 ans"],
+    "correctAnswerIndices": [0],
+    "explanation": "L'ETM est obligatoire pour tous les candidats aux permis A1, A2 et A, même titulaires du permis B."
+  },
+  {
+    "id": 52,
+    "category": "Équipement",
+    "difficulty": "Difficile",
+    "text": "Quels éléments sont obligatoires sur une moto pour le contrôle technique ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1562157873-38bc5ca4e3c7?w=600&fit=crop",
+    "options": ["Rétroviseur gauche", "Klaxon fonctionnel", "Indicateur de vitesse", "Béquille latérale avec sécurité"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Rétroviseur gauche, klaxon et compteur sont obligatoires."
+  },
+  {
+    "id": 53,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "En cas de chute à moto, que devez-vous faire en priorité ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Vous mettre en sécurité", "Signaler l'accident", "Retirer votre casque immédiatement", "Appeler les secours si nécessaire"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Mettez-vous en sécurité, signalez l'accident, appelez les secours. Ne retirez votre casque que si la victime ne respire plus."
+  },
+  {
+    "id": 54,
+    "category": "Conduite",
+    "difficulty": "Facile",
+    "text": "En moto, lors d'une averse soudaine, le danger principal est :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Le bruit de la pluie", "La remontée d'huile et de carburant sur la chaussée", "Le refroidissement du moteur", "Les éclaboussures des autres véhicules"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les premières minutes de pluie sont les plus dangereuses : l'huile et le carburant remontent à la surface."
+  },
+  {
+    "id": 55,
+    "category": "Conduite",
+    "difficulty": "Moyen",
+    "text": "Dans un rond-point, le motard doit :",
+    "imageUrl": "https://images.unsplash.com/photo-1564939558297-f8f68aa2d29e?w=600&fit=crop",
+    "options": ["Rester à droite", "Occuper toute la largeur de la voie", "Rester au centre de la voie", "Adapter sa position pour être visible"],
+    "correctAnswerIndices": [3],
+    "explanation": "Dans un rond-point, placez-vous pour être visible des autres usagers et éviter les angles morts des voitures."
+  },
+  {
+    "id": 56,
+    "category": "Passager",
+    "difficulty": "Moyen",
+    "text": "Le passager d'une moto doit porter :",
+    "imageUrl": "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&fit=crop",
+    "options": ["Un casque uniquement", "Un casque et des gants", "Un casque, des gants et des chaussures fermées", "Le même équipement que le conducteur"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le passager doit porter un casque homologué et des gants certifiés CE, comme le conducteur."
+  },
+  {
+    "id": 57,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Sur une route à 80 km/h, un motard doit adapter sa vitesse car sa largeur lui permet :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B14_80.svg?width=480",
+    "options": ["De rouler plus vite qu'une voiture", "De doubler plus facilement", "D'être moins stable qu'une voiture à haute vitesse", "De freiner plus court qu'une voiture"],
+    "correctAnswerIndices": [2],
+    "explanation": "Une moto est moins stable qu'une voiture, particulièrement à haute vitesse ou par vent latéral."
+  },
+  {
+    "id": 58,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Pourquoi les motards sont-ils plus vulnérables que les automobilistes ?",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Absence de carrosserie protectrice", "Taille réduite les rendant moins visibles", "Stabilité moindre", "Toutes ces réponses"],
+    "correctAnswerIndices": [3],
+    "explanation": "Les motards cumulent les vulnérabilités : pas de carrosserie, petite taille peu visible, et équilibre précaire."
+  },
+  {
+    "id": 59,
+    "category": "Permis",
+    "difficulty": "Facile",
+    "text": "Le permis A1 concerne les motos de :",
+    "imageUrl": null,
+    "options": ["Moins de 50 cm³", "125 cm³ maximum (11 kW)", "Toutes cylindrées", "Uniquement les scooters électriques"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le permis A1 autorise les motos de 125 cm³ maximum, d'une puissance n'excédant pas 11 kW."
+  },
+  {
+    "id": 60,
+    "category": "Conduite",
+    "difficulty": "Difficile",
+    "text": "À moto, le phénomène de louvoiement (guidonnage) se produit quand :",
+    "imageUrl": "https://images.unsplash.com/photo-1558980395-d8a3c7960ce6?w=600&fit=crop",
+    "options": ["Vous accélérez trop fort", "Le guidon se met à osciller de façon incontrôlée, souvent à haute vitesse", "Vous freinez trop fort de l'avant", "La route est verglacée"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le guidonnage est une oscillation du guidon, souvent à haute vitesse. Relâchez l'accélérateur progressivement, serrez le réservoir et ne freinez pas brusquement."
+  }
+]

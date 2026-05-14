@@ -1,0 +1,845 @@
+[
+  {
+    "id": 1,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Que signifie un panneau triangulaire bordé de rouge ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_A1a.svg?width=480",
+    "options": ["Une interdiction", "Un danger", "Une obligation", "Une indication"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les panneaux triangulaires bordés de rouge signalent un danger.",
+    "variants": [
+      {
+        "text": "Un panneau de forme triangulaire avec un liseré rouge indique :",
+        "options": ["Une obligation", "Un danger", "Une indication", "Une priorité"],
+        "correctAnswerIndices": [1]
+      },
+      {
+        "text": "Quel type de panneau signale un danger sur la route ?",
+        "options": ["Un panneau triangulaire bordé de rouge", "Un panneau rond à fond bleu", "Un panneau carré blanc", "Un panneau octogonal"],
+        "correctAnswerIndices": [0]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Que signifie un panneau rond à fond bleu ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B4.svg?width=480",
+    "options": ["Une interdiction", "Un danger", "Une obligation", "Une fin d'interdiction"],
+    "correctAnswerIndices": [2],
+    "explanation": "Les panneaux ronds à fond bleu indiquent une obligation.",
+    "variants": [
+      {
+        "text": "Un panneau circulaire à fond bleu signifie :",
+        "options": ["Vous avez la priorité", "Vous devez respecter une obligation", "Vous entrez dans une zone dangereuse", "Vous êtes sur une autoroute"],
+        "correctAnswerIndices": [1]
+      },
+      {
+        "text": "Quel type de panneau impose une prescription obligatoire ?",
+        "options": ["Triangulaire bordé de rouge", "Rond à fond bleu", "Carré à fond blanc", "Rectangulaire à fond vert"],
+        "correctAnswerIndices": [1]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Que signifie un panneau rond bordé de rouge ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B1.svg?width=480",
+    "options": ["Un danger", "Une obligation", "Une interdiction", "Une indication"],
+    "correctAnswerIndices": [2],
+    "explanation": "Les panneaux ronds bordés de rouge signalent une interdiction.",
+    "variants": [
+      {
+        "text": "Qu'indique un panneau rond cerclé de rouge ?",
+        "options": ["Un danger", "Une interdiction", "Une obligation", "Une indication"],
+        "correctAnswerIndices": [1]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Quel panneau indique une priorité ponctuelle ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_AB2.svg?width=480",
+    "options": ["Le panneau STOP", "Le panneau cédez le passage", "Le panneau de priorité ponctuelle (flèche rouge/noire)", "Le feu orange clignotant"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le panneau carré avec flèche indique la priorité ponctuelle à une intersection."
+  },
+  {
+    "id": 5,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Un panneau carré à fond bleu avec un pictogramme blanc est un panneau de :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_C1a.svg?width=480",
+    "options": ["Danger", "Interdiction", "Indication", "Obligation"],
+    "correctAnswerIndices": [2],
+    "explanation": "Les panneaux carrés à fond bleu sont des panneaux d'indication."
+  },
+  {
+    "id": 6,
+    "category": "Signalisation",
+    "difficulty": "Difficile",
+    "text": "Quels panneaux imposent un arrêt obligatoire ? (plusieurs réponses)",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_AB4.svg?width=480",
+    "options": ["Le panneau STOP", "Le feu rouge fixe", "Le panneau cédez le passage", "Le feu rouge clignotant"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Le STOP, le feu rouge fixe et le feu rouge clignotant imposent un arrêt. Le cédez le passage impose seulement de laisser la priorité."
+  },
+  {
+    "id": 7,
+    "category": "Priorité",
+    "difficulty": "Facile",
+    "text": "En l'absence de signalisation, quelle règle de priorité s'applique ?",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Priorité à gauche", "Priorité à droite", "Premier arrivé, premier passé", "Priorité au véhicule le plus rapide"],
+    "correctAnswerIndices": [1],
+    "explanation": "En l'absence de signalisation, la règle de la priorité à droite s'applique.",
+    "variants": [
+      {
+        "text": "À un carrefour sans panneau, qui passe en premier ?",
+        "options": ["Le véhicule le plus rapide", "Le véhicule venant de droite", "Le premier arrivé", "Le véhicule le plus gros"],
+        "correctAnswerIndices": [1]
+      },
+      {
+        "text": "La règle de la priorité à droite signifie que :",
+        "options": ["Vous devez céder le passage aux véhicules venant de droite", "Les autres doivent vous céder le passage", "Vous passez en premier si vous arrivez en premier", "La priorité est au plus rapide"],
+        "correctAnswerIndices": [0]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "category": "Priorité",
+    "difficulty": "Facile",
+    "text": "À une intersection avec un panneau STOP, vous devez :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_AB4.svg?width=480",
+    "options": ["Ralentir et passer", "Céder le passage sans arrêt", "Marquer un arrêt complet", "Klaxonner avant de passer"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le panneau STOP impose un arrêt complet avant de repartir."
+  },
+  {
+    "id": 9,
+    "category": "Priorité",
+    "difficulty": "Moyen",
+    "text": "À un carrefour, un véhicule venant de droite doit être prioritaire :",
+    "imageUrl": "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&fit=crop",
+    "options": ["Toujours", "Sauf si vous êtes sur une route prioritaire", "Jamais", "Seulement la nuit"],
+    "correctAnswerIndices": [1],
+    "explanation": "La priorité à droite ne s'applique pas si vous circulez sur une route classée prioritaire."
+  },
+  {
+    "id": 10,
+    "category": "Priorité",
+    "difficulty": "Difficile",
+    "text": "Quelles règles s'appliquent dans un rond-point ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1564939558297-f8f68aa2d29e?w=600&fit=crop",
+    "options": ["Priorité aux véhicules déjà dans le rond-point", "Priorité à droite", "Clignotant droit pour sortir", "Clignotant gauche pour rester"],
+    "correctAnswerIndices": [0, 2],
+    "explanation": "Dans un rond-point, les véhicules déjà engagés sont prioritaires. Utilisez le clignotant droit pour indiquer votre sortie."
+  },
+  {
+    "id": 11,
+    "category": "Vitesse",
+    "difficulty": "Facile",
+    "text": "Quelle est la vitesse maximale en agglomération ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B14_50.svg?width=480",
+    "options": ["30 km/h", "50 km/h", "70 km/h", "90 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "La vitesse maximale en agglomération est de 50 km/h."
+  },
+  {
+    "id": 12,
+    "category": "Vitesse",
+    "difficulty": "Facile",
+    "text": "Quelle est la vitesse maximale sur autoroute par temps sec ?",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["110 km/h", "120 km/h", "130 km/h", "140 km/h"],
+    "correctAnswerIndices": [2],
+    "explanation": "La vitesse maximale sur autoroute est de 130 km/h par temps sec pour les conducteurs confirmés."
+  },
+  {
+    "id": 13,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Par temps de pluie, la vitesse maximale sur autoroute est de :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["90 km/h", "100 km/h", "110 km/h", "130 km/h"],
+    "correctAnswerIndices": [2],
+    "explanation": "Par temps de pluie, la vitesse maximale est abaissée à 110 km/h sur autoroute."
+  },
+  {
+    "id": 14,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Quelle est la vitesse maximale sur route à double sens sans séparateur central ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B14_80.svg?width=480",
+    "options": ["70 km/h", "80 km/h", "90 km/h", "110 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "La vitesse maximale est de 80 km/h sur les routes à double sens sans séparateur central."
+  },
+  {
+    "id": 15,
+    "category": "Vitesse",
+    "difficulty": "Difficile",
+    "text": "Un excès de vitesse de 50 km/h ou plus entraîne : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["Un retrait de 6 points", "Une amende forfaitaire", "Une suspension de permis", "Une simple contravention"],
+    "correctAnswerIndices": [0, 2],
+    "explanation": "Un excès de vitesse de 50 km/h ou plus entraîne un retrait de 6 points et une suspension du permis."
+  },
+  {
+    "id": 16,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Facile",
+    "text": "Quel est le taux d'alcoolémie maximal autorisé pour un conducteur expérimenté ?",
+    "imageUrl": "https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=600&fit=crop",
+    "options": ["0,2 g/l", "0,5 g/l", "0,8 g/l", "1,0 g/l"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le taux maximum autorisé est de 0,5 g/l de sang (0,25 mg/l d'air expiré)."
+  },
+  {
+    "id": 17,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Moyen",
+    "text": "Quel taux d'alcoolémie est autorisé pour un jeune conducteur en permis probatoire ?",
+    "imageUrl": null,
+    "options": ["0,0 g/l", "0,2 g/l", "0,5 g/l", "0,8 g/l"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le taux maximum est de 0,2 g/l pour les jeunes conducteurs en permis probatoire."
+  },
+  {
+    "id": 18,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Moyen",
+    "text": "La consommation de cannabis au volant est :",
+    "imageUrl": null,
+    "options": ["Tolérée en petite quantité", "Totalement interdite", "Autorisée sur prescription", "Autorisée hors agglomération"],
+    "correctAnswerIndices": [1],
+    "explanation": "La conduite sous l'emprise de stupéfiants est totalement interdite, quelle que soit la quantité."
+  },
+  {
+    "id": 19,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Difficile",
+    "text": "Conduire avec un taux d'alcool supérieur à 0,8 g/l est : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["Un délit", "Une contravention simple", "Passible de prison", "Passible de retrait de 6 points"],
+    "correctAnswerIndices": [0, 2, 3],
+    "explanation": "Au-dessus de 0,8 g/l, c'est un délit passible de prison, retrait de 6 points, et suspension du permis."
+  },
+  {
+    "id": 20,
+    "category": "Stationnement",
+    "difficulty": "Facile",
+    "text": "Un stationnement est considéré comme gênant s'il :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B6a1.svg?width=480",
+    "options": ["Dépasse 2 heures", "Gêne la circulation", "Est sur une place payante sans ticket", "Est dans une zone bleue sans disque"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un stationnement est gênant s'il gêne la circulation des autres usagers."
+  },
+  {
+    "id": 21,
+    "category": "Stationnement",
+    "difficulty": "Moyen",
+    "text": "Le stationnement sur un passage piéton est :",
+    "imageUrl": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&fit=crop",
+    "options": ["Toléré moins de 5 minutes", "Interdit", "Autorisé la nuit", "Autorisé avec warning"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le stationnement sur un passage piéton est strictement interdit."
+  },
+  {
+    "id": 22,
+    "category": "Stationnement",
+    "difficulty": "Difficile",
+    "text": "Quels stationnements sont considérés comme très gênants ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Sur un trottoir", "Sur une voie de bus", "Devant une borne incendie", "En double file"],
+    "correctAnswerIndices": [1, 2, 3],
+    "explanation": "Stationner sur une voie de bus, devant une borne incendie ou en double file sont très gênants."
+  },
+  {
+    "id": 23,
+    "category": "Éclairage",
+    "difficulty": "Facile",
+    "text": "Quand devez-vous allumer vos feux de croisement ?",
+    "imageUrl": "https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=600&fit=crop",
+    "options": ["La nuit uniquement", "Quand la visibilité est réduite", "Uniquement sous la pluie", "Seulement en hiver"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les feux de croisement doivent être allumés dès que la visibilité est réduite (nuit, pluie, brouillard, tunnel)."
+  },
+  {
+    "id": 24,
+    "category": "Éclairage",
+    "difficulty": "Moyen",
+    "text": "Les feux de brouillard arrière ne doivent être utilisés que :",
+    "imageUrl": "https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=600&fit=crop",
+    "options": ["Par temps de pluie", "Par brouillard ou neige", "La nuit sur autoroute", "En ville la nuit"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les feux de brouillard arrière sont réservés au brouillard ou à la neige. Leur usage abusif éblouit."
+  },
+  {
+    "id": 25,
+    "category": "Éclairage",
+    "difficulty": "Difficile",
+    "text": "En cas de croisement la nuit, vous devez : (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1473330694553-7babfd5ef4fa?w=600&fit=crop",
+    "options": ["Passer en feux de croisement", "Ralentir si nécessaire", "Utiliser les feux de route", "Regarder le bas-côté droit"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Lors du croisement : passez en feux de croisement, ralentissez si nécessaire, et guidez-vous avec le bas-côté droit."
+  },
+  {
+    "id": 26,
+    "category": "Sécurité",
+    "difficulty": "Facile",
+    "text": "Le port de la ceinture de sécurité est obligatoire :",
+    "imageUrl": "https://images.unsplash.com/photo-1550355191-aa8a80b1a558?w=600&fit=crop",
+    "options": ["À l'avant seulement", "À l'avant et à l'arrière", "Uniquement sur autoroute", "Pour le conducteur uniquement"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le port de la ceinture est obligatoire pour tous les occupants, à l'avant comme à l'arrière."
+  },
+  {
+    "id": 27,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Quelle est la distance de sécurité à respecter sur autoroute ?",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["Une ligne blanche", "Deux secondes", "Deux lignes blanches", "Trois mètres"],
+    "correctAnswerIndices": [1],
+    "explanation": "La distance de sécurité correspond à 2 secondes minimum de décalage avec le véhicule qui précède."
+  },
+  {
+    "id": 28,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quels équipements de sécurité sont obligatoires dans une voiture ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Gilet de sécurité", "Triangle de présignalisation", "Extincteur", "Trousse de secours"],
+    "correctAnswerIndices": [0, 1],
+    "explanation": "Le gilet de sécurité et le triangle de présignalisation sont obligatoires. L'extincteur et la trousse ne le sont pas."
+  },
+  {
+    "id": 29,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Facile",
+    "text": "Pour dépasser, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Klaxonner", "Utiliser le clignotant gauche", "Faire un appel de phares", "Accélérer seulement"],
+    "correctAnswerIndices": [1],
+    "explanation": "Avant de dépasser, vous devez actionner votre clignotant gauche pour signaler votre intention."
+  },
+  {
+    "id": 30,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Moyen",
+    "text": "Le dépassement est interdit :",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["En sommet de côte", "Sur une ligne continue", "Dans un virage", "En ligne droite"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Le dépassement est interdit en sommet de côte, sur une ligne continue et dans un virage sans visibilité."
+  },
+  {
+    "id": 31,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Difficile",
+    "text": "Lors d'un croisement difficile en montagne, qui doit s'arrêter ?",
+    "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&fit=crop",
+    "options": ["Le véhicule le plus lourd", "Le véhicule qui monte", "Le véhicule qui descend", "Le véhicule le plus petit"],
+    "correctAnswerIndices": [2],
+    "explanation": "En montagne, le véhicule qui descend doit s'arrêter pour laisser passer le véhicule qui monte."
+  },
+  {
+    "id": 32,
+    "category": "Environnement",
+    "difficulty": "Facile",
+    "text": "L'éco-conduite permet de :",
+    "imageUrl": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=600&fit=crop",
+    "options": ["Réduire la consommation de carburant", "Augmenter la vitesse", "Améliorer le son du moteur", "Réduire le bruit des pneus"],
+    "correctAnswerIndices": [0],
+    "explanation": "L'éco-conduite vise à réduire la consommation de carburant et les émissions polluantes."
+  },
+  {
+    "id": 33,
+    "category": "Environnement",
+    "difficulty": "Moyen",
+    "text": "Pour réduire la consommation, il est recommandé de :",
+    "imageUrl": null,
+    "options": ["Couper le moteur à l'arrêt prolongé", "Rouler en surrégime", "Accélérer brusquement", "Garder la climatisation toujours allumée"],
+    "correctAnswerIndices": [0],
+    "explanation": "Couper le moteur lors d'un arrêt prolongé (> 30 secondes) réduit la consommation et la pollution."
+  },
+  {
+    "id": 34,
+    "category": "Environnement",
+    "difficulty": "Difficile",
+    "text": "Quels comportements réduisent l'impact environnemental ? (plusieurs réponses)",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Crit%27Air_vignette.svg?width=480",
+    "options": ["Vérifier la pression des pneus", "Limiter la climatisation", "Rouler fenêtres ouvertes à haute vitesse", "Anticiper les ralentissements"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Pneus bien gonflés, clim limitée et anticipation réduisent la consommation. Rouler fenêtres ouvertes augmente la traînée."
+  },
+  {
+    "id": 35,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Facile",
+    "text": "À un passage piéton sans feu, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&fit=crop",
+    "options": ["Accélérer pour passer avant", "Klaxonner", "Céder le passage aux piétons", "Faire un appel de phares"],
+    "correctAnswerIndices": [2],
+    "explanation": "Vous devez toujours céder le passage aux piétons engagés sur un passage piéton."
+  },
+  {
+    "id": 36,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Moyen",
+    "text": "En ville, pour dépasser un cycliste, la distance minimale est de :",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&fit=crop",
+    "options": ["50 cm", "1 mètre", "1,5 mètre", "2 mètres"],
+    "correctAnswerIndices": [1],
+    "explanation": "En ville, vous devez laisser au moins 1 mètre (1,5 m hors agglomération) pour dépasser un cycliste."
+  },
+  {
+    "id": 37,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Difficile",
+    "text": "Quelles règles s'appliquent aux zones de rencontre ? (plusieurs réponses)",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B52.svg?width=480",
+    "options": ["Les piétons sont prioritaires", "La vitesse est limitée à 20 km/h", "Le stationnement est interdit", "Les cyclistes peuvent circuler"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "En zone de rencontre : piétons prioritaires, 20 km/h max, tous les usagers cohabitent."
+  },
+  {
+    "id": 38,
+    "category": "Premiers Secours",
+    "difficulty": "Facile",
+    "text": "Quel numéro appeler en cas d'urgence en Europe ?",
+    "imageUrl": null,
+    "options": ["15", "17", "18", "112"],
+    "correctAnswerIndices": [3],
+    "explanation": "Le 112 est le numéro d'urgence européen, accessible dans tous les pays de l'UE."
+  },
+  {
+    "id": 39,
+    "category": "Premiers Secours",
+    "difficulty": "Moyen",
+    "text": "Face à une victime inconsciente qui respire, que devez-vous faire ?",
+    "imageUrl": null,
+    "options": ["La mettre en PLS", "La secouer pour la réveiller", "Lui donner de l'eau", "La laisser sur le dos"],
+    "correctAnswerIndices": [0],
+    "explanation": "Une victime inconsciente qui respire doit être mise en PLS (Position Latérale de Sécurité) pour éviter l'étouffement."
+  },
+  {
+    "id": 40,
+    "category": "Premiers Secours",
+    "difficulty": "Difficile",
+    "text": "Face à une victime qui ne respire plus, que devez-vous faire ? (plusieurs réponses)",
+    "imageUrl": null,
+    "options": ["Appeler les secours (15 ou 112)", "Commencer un massage cardiaque", "Mettre en PLS", "Utiliser un défibrillateur si disponible"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Appelez les secours, commencez le massage cardiaque et utilisez un DAE si disponible. La PLS est pour les victimes qui respirent."
+  },
+  {
+    "id": 41,
+    "category": "Permis à Points",
+    "difficulty": "Facile",
+    "text": "Combien de points comporte le permis de conduire ?",
+    "imageUrl": null,
+    "options": ["6 points", "8 points", "10 points", "12 points"],
+    "correctAnswerIndices": [3],
+    "explanation": "Le permis comporte 12 points (6 points pendant la période probatoire de 3 ans)."
+  },
+  {
+    "id": 42,
+    "category": "Permis à Points",
+    "difficulty": "Moyen",
+    "text": "Combien de points un conducteur novice possède-t-il initialement ?",
+    "imageUrl": null,
+    "options": ["4 points", "6 points", "8 points", "12 points"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un conducteur novice débute avec un capital de 6 points pendant la période probatoire."
+  },
+  {
+    "id": 43,
+    "category": "Permis à Points",
+    "difficulty": "Difficile",
+    "text": "Quelles infractions entraînent un retrait de 6 points ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["Conduite en état d'ivresse", "Excès de vitesse ≥ 50 km/h", "Stationnement gênant", "Conduite sous stupéfiants"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "Alcool, excès de vitesse ≥ 50 km/h et stupéfiants = 6 points retirés."
+  },
+  {
+    "id": 44,
+    "category": "Conditions Météo",
+    "difficulty": "Facile",
+    "text": "Par temps de brouillard avec visibilité de 50 mètres, la vitesse maximale est de :",
+    "imageUrl": "https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=600&fit=crop",
+    "options": ["30 km/h", "50 km/h", "70 km/h", "90 km/h"],
+    "correctAnswerIndices": [1],
+    "explanation": "Par visibilité inférieure à 50 m, la vitesse est limitée à 50 km/h sur toutes les routes."
+  },
+  {
+    "id": 45,
+    "category": "Conditions Météo",
+    "difficulty": "Moyen",
+    "text": "L'aquaplaning se produit lorsque :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Les pneus sont trop gonflés", "Un film d'eau s'interpose entre les pneus et la route", "La route est verglacée", "Le moteur surchauffe"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'aquaplaning survient quand les pneus n'évacuent plus l'eau et qu'un film d'eau se forme entre le pneu et la chaussée."
+  },
+  {
+    "id": 46,
+    "category": "Conditions Météo",
+    "difficulty": "Difficile",
+    "text": "Que devez-vous faire en cas d'aquaplaning ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Ne pas freiner brusquement", "Tenir fermement le volant", "Accélérer pour sortir de la flaque", "Lever le pied de l'accélérateur"],
+    "correctAnswerIndices": [0, 1, 3],
+    "explanation": "En cas d'aquaplaning : ne pas freiner, tenir le volant et lever le pied progressivement. Surtout ne pas accélérer."
+  },
+  {
+    "id": 47,
+    "category": "Signalisation",
+    "difficulty": "Facile",
+    "text": "Un feu orange fixe signifie :",
+    "imageUrl": "https://images.unsplash.com/photo-1621976360623-004223292274?w=600&fit=crop",
+    "options": ["Passez rapidement", "Arrêt obligatoire", "Arrêt sauf si dangereux", "Accélérez"],
+    "correctAnswerIndices": [2],
+    "explanation": "Le feu orange fixe impose l'arrêt, sauf si le conducteur ne peut plus s'arrêter en toute sécurité."
+  },
+  {
+    "id": 48,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Un feu orange clignotant signifie :",
+    "imageUrl": "https://images.unsplash.com/photo-1621976360623-004223292274?w=600&fit=crop",
+    "options": ["Arrêt absolu", "Ralentir et passer avec prudence", "Accélérer", "Demi-tour obligatoire"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le feu orange clignotant autorise le passage avec prudence."
+  },
+  {
+    "id": 49,
+    "category": "Priorité",
+    "difficulty": "Facile",
+    "text": "Face à un panneau 'Cédez le passage', vous devez :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_AB3a.svg?width=480",
+    "options": ["Vous arrêter obligatoirement", "Ralentir et céder le passage si nécessaire", "Accélérer", "Klaxonner"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le panneau 'Cédez le passage' impose de ralentir et de laisser la priorité, sans arrêt obligatoire si la voie est libre."
+  },
+  {
+    "id": 50,
+    "category": "Priorité",
+    "difficulty": "Difficile",
+    "text": "Qui est prioritaire entre un véhicule de secours avec sirène et un tramway ?",
+    "imageUrl": null,
+    "options": ["Le tramway", "Le véhicule de secours", "Le premier arrivé", "Aucun, ils s'arrêtent tous les deux"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les véhicules de secours avec avertisseurs sonores et lumineux sont prioritaires sur tous les autres usagers, y compris les tramways."
+  },
+  {
+    "id": 51,
+    "category": "Vitesse",
+    "difficulty": "Facile",
+    "text": "La vitesse est limitée à 110 km/h sur :",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Les routes nationales", "Les autoroutes par temps de pluie", "Les voies rapides urbaines", "Les routes de montagne"],
+    "correctAnswerIndices": [1],
+    "explanation": "Par temps de pluie, la vitesse maximale est de 110 km/h sur autoroute."
+  },
+  {
+    "id": 52,
+    "category": "Vitesse",
+    "difficulty": "Moyen",
+    "text": "Quelle amende pour un excès de vitesse inférieur à 20 km/h ?",
+    "imageUrl": "https://images.unsplash.com/photo-1544829728-e5cb9eed20a6?w=600&fit=crop",
+    "options": ["68 € et 1 point", "135 € et 1 point", "135 € et 2 points", "Aucune sanction"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un excès de vitesse inférieur à 20 km/h (hors agglomération) entraîne une amende de 135 € et un retrait d'1 point."
+  },
+  {
+    "id": 53,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Facile",
+    "text": "L'éthylotest obligatoire dans chaque véhicule concerne :",
+    "imageUrl": null,
+    "options": ["Tous les véhicules", "Les véhicules de société", "Les jeunes conducteurs", "Cette obligation n'existe plus"],
+    "correctAnswerIndices": [3],
+    "explanation": "L'obligation de détenir un éthylotest dans le véhicule a été supprimée en 2020."
+  },
+  {
+    "id": 54,
+    "category": "Alcool et Stupéfiants",
+    "difficulty": "Difficile",
+    "text": "Après combien de verres standard un homme de 75 kg atteint-il environ 0,5 g/l ?",
+    "imageUrl": null,
+    "options": ["1 verre", "2 verres", "3 verres", "4 verres"],
+    "correctAnswerIndices": [1],
+    "explanation": "Environ 2 verres standard suffisent pour atteindre la limite légale de 0,5 g/l."
+  },
+  {
+    "id": 55,
+    "category": "Stationnement",
+    "difficulty": "Facile",
+    "text": "Combien de temps peut-on stationner en zone bleue avec un disque ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B6a1.svg?width=480",
+    "options": ["30 minutes", "1 heure", "1h30", "2 heures"],
+    "correctAnswerIndices": [2],
+    "explanation": "En zone bleue, le stationnement est gratuit mais limité à 1h30 avec un disque de stationnement."
+  },
+  {
+    "id": 56,
+    "category": "Stationnement",
+    "difficulty": "Moyen",
+    "text": "Le stationnement alterné semi-mensuel s'applique :",
+    "imageUrl": null,
+    "options": ["Dans toutes les villes", "À Paris uniquement", "Uniquement en zone rurale", "Sur les routes nationales"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le stationnement alterné s'applique dans de nombreuses villes, du 1er au 15 du mois d'un côté, du 16 au 31 de l'autre."
+  },
+  {
+    "id": 57,
+    "category": "Éclairage",
+    "difficulty": "Facile",
+    "text": "Dans un tunnel, vous devez :",
+    "imageUrl": "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=600&fit=crop",
+    "options": ["Allumer vos feux de croisement", "Allumer vos feux de route", "Éteindre tous vos feux", "Rouler en warning"],
+    "correctAnswerIndices": [0],
+    "explanation": "Dans un tunnel, l'allumage des feux de croisement est obligatoire, même de jour."
+  },
+  {
+    "id": 58,
+    "category": "Éclairage",
+    "difficulty": "Difficile",
+    "text": "Quand peut-on utiliser les feux de route en agglomération ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1473330694553-7babfd5ef4fa?w=600&fit=crop",
+    "options": ["Jamais en zone éclairée", "En cas de danger immédiat", "Sur les voies rapides urbaines non éclairées", "Pour signaler sa présence à un piéton"],
+    "correctAnswerIndices": [0, 2],
+    "explanation": "Les feux de route sont interdits en ville sur voies éclairées, sauf voies rapides non éclairées."
+  },
+  {
+    "id": 59,
+    "category": "Sécurité",
+    "difficulty": "Facile",
+    "text": "Le gilet de sécurité doit être porté :",
+    "imageUrl": null,
+    "options": ["Avant de sortir du véhicule en urgence", "En permanence au volant", "Uniquement la nuit", "Sur autoroute uniquement"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le gilet de sécurité doit être enfilé avant de sortir du véhicule en cas d'arrêt d'urgence."
+  },
+  {
+    "id": 60,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "L'ABS (système antiblocage des roues) permet de :",
+    "imageUrl": "https://images.unsplash.com/photo-1550355191-aa8a80b1a558?w=600&fit=crop",
+    "options": ["Réduire la distance de freinage", "Garder le contrôle de la direction en freinant", "Accélérer plus vite", "Économiser du carburant"],
+    "correctAnswerIndices": [1],
+    "explanation": "L'ABS empêche le blocage des roues et permet de conserver la direction lors d'un freinage d'urgence."
+  },
+  {
+    "id": 61,
+    "category": "Sécurité",
+    "difficulty": "Difficile",
+    "text": "Quels facteurs augmentent la distance de freinage ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["La vitesse", "La pluie", "Des pneus usés", "Un chargement lourd"],
+    "correctAnswerIndices": [0, 1, 2, 3],
+    "explanation": "Tous ces facteurs augmentent la distance de freinage : vitesse, pluie, pneus usés, et charge du véhicule."
+  },
+  {
+    "id": 62,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Facile",
+    "text": "Après un dépassement, vous devez vous rabattre :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Immédiatement", "Après avoir mis le clignotant droit", "Sans prévenir", "En klaxonnant"],
+    "correctAnswerIndices": [1],
+    "explanation": "Après un dépassement, actionnez votre clignotant droit avant de vous rabattre progressivement."
+  },
+  {
+    "id": 63,
+    "category": "Croisement et Dépassement",
+    "difficulty": "Difficile",
+    "text": "Peut-on dépasser par la droite ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["Jamais", "Si le véhicule devant tourne à gauche", "Sur une voie à sens unique", "Dans un embouteillage si votre file avance"],
+    "correctAnswerIndices": [1, 2, 3],
+    "explanation": "Le dépassement par la droite est autorisé si le véhicule devant tourne à gauche, sur voie à sens unique, ou en cas d'embouteillage."
+  },
+  {
+    "id": 64,
+    "category": "Environnement",
+    "difficulty": "Facile",
+    "text": "Qu'est-ce que la vignette Crit'Air ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Crit%27Air_vignette.svg?width=480",
+    "options": ["Un autocollant de pollution", "Un certificat d'assurance", "Un pass autoroute", "Un abonnement de parking"],
+    "correctAnswerIndices": [0],
+    "explanation": "La vignette Crit'Air classe les véhicules selon leurs émissions polluantes pour la circulation dans les ZFE."
+  },
+  {
+    "id": 65,
+    "category": "Environnement",
+    "difficulty": "Moyen",
+    "text": "Les Zones à Faibles Émissions (ZFE) interdisent :",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Crit%27Air_vignette.svg?width=480",
+    "options": ["Tous les véhicules", "Les véhicules les plus polluants", "Les motos", "Les véhicules électriques"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les ZFE interdisent la circulation des véhicules les plus polluants (vignettes Crit'Air 3, 4, 5 et non classés)."
+  },
+  {
+    "id": 66,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Facile",
+    "text": "Sur une piste cyclable, les voitures peuvent-elles circuler ?",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&fit=crop",
+    "options": ["Oui, en ralentissant", "Non, c'est strictement interdit", "Oui, le week-end", "Seulement les véhicules électriques"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les pistes cyclables sont réservées aux cyclistes. Les voitures ne peuvent ni circuler ni stationner dessus."
+  },
+  {
+    "id": 67,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Moyen",
+    "text": "Un cycliste peut-il remonter une file de voitures par la droite ?",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&fit=crop",
+    "options": ["Jamais", "Oui, en interfile", "Oui, si c'est une bande cyclable", "Seulement à l'arrêt"],
+    "correctAnswerIndices": [2],
+    "explanation": "Un cycliste peut remonter une file par la droite uniquement s'il existe une bande ou piste cyclable."
+  },
+  {
+    "id": 68,
+    "category": "Permis à Points",
+    "difficulty": "Facile",
+    "text": "Comment récupère-t-on des points perdus ?",
+    "imageUrl": null,
+    "options": ["En attendant 6 mois", "En faisant un stage de sensibilisation", "En payant une amende", "En repassant le code"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un stage volontaire de sensibilisation permet de récupérer jusqu'à 4 points, dans la limite de 12."
+  },
+  {
+    "id": 69,
+    "category": "Permis à Points",
+    "difficulty": "Moyen",
+    "text": "Si vous perdez tous vos points, dans quel délai pouvez-vous repasser le permis ?",
+    "imageUrl": null,
+    "options": ["Immédiatement", "Après 6 mois", "Après 1 an", "Après 3 ans"],
+    "correctAnswerIndices": [1],
+    "explanation": "Après une annulation de permis (0 point), vous devez attendre 6 mois avant de pouvoir repasser l'examen."
+  },
+  {
+    "id": 70,
+    "category": "Conditions Météo",
+    "difficulty": "Facile",
+    "text": "En cas de verglas, que devez-vous faire ?",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["Accélérer pour passer vite", "Réduire votre vitesse et éviter les freinages brusques", "Rouler comme d'habitude", "Mettre les feux de route"],
+    "correctAnswerIndices": [1],
+    "explanation": "En cas de verglas, réduisez votre vitesse et évitez tout freinage ou coup de volant brusque."
+  },
+  {
+    "id": 71,
+    "category": "Conditions Météo",
+    "difficulty": "Moyen",
+    "text": "Les pneus neige sont obligatoires :",
+    "imageUrl": "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=600&fit=crop",
+    "options": ["Sur tout le territoire en hiver", "Dans certaines zones montagneuses du 1er novembre au 31 mars", "Toute l'année en montagne", "Uniquement sur autoroute"],
+    "correctAnswerIndices": [1],
+    "explanation": "Les pneus neige ou chaînes sont obligatoires dans certaines zones de montagne du 1er novembre au 31 mars (loi Montagne)."
+  },
+  {
+    "id": 72,
+    "category": "Premiers Secours",
+    "difficulty": "Facile",
+    "text": "Après un accident, la première chose à faire est de :",
+    "imageUrl": null,
+    "options": ["Protéger la zone", "Alerter les secours", "Secourir les blessés", "Prendre des photos"],
+    "correctAnswerIndices": [0],
+    "explanation": "L'ordre est : Protéger, Alerter, Secourir. Protéger la zone évite d'autres accidents."
+  },
+  {
+    "id": 73,
+    "category": "Premiers Secours",
+    "difficulty": "Moyen",
+    "text": "Face à une victime qui saigne abondamment, vous devez :",
+    "imageUrl": null,
+    "options": ["Mettre un garrot immédiatement", "Comprimer la plaie avec un tissu propre", "Verser de l'alcool sur la plaie", "Attendre les secours sans rien faire"],
+    "correctAnswerIndices": [1],
+    "explanation": "Comprimez directement la plaie avec un tissu propre pour stopper l'hémorragie."
+  },
+  {
+    "id": 74,
+    "category": "Signalisation",
+    "difficulty": "Moyen",
+    "text": "Que signifie un panneau rectangulaire à fond blanc avec une barre rouge ?",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/France_road_sign_B1.svg?width=480",
+    "options": ["Sens interdit", "Interdiction de stationner", "Interdiction de dépasser", "Limitation de vitesse"],
+    "correctAnswerIndices": [0],
+    "explanation": "Le panneau rectangulaire blanc avec barre rouge signifie 'Sens interdit'."
+  },
+  {
+    "id": 75,
+    "category": "Priorité",
+    "difficulty": "Moyen",
+    "text": "Aux feux tricolores, les cyclistes peuvent-ils passer au rouge ?",
+    "imageUrl": "https://images.unsplash.com/photo-1621976360623-004223292274?w=600&fit=crop",
+    "options": ["Jamais", "Oui, si un panneau M12 l'autorise", "Oui, toujours", "Seulement la nuit"],
+    "correctAnswerIndices": [1],
+    "explanation": "Un panneau M12 (triangle jaune avec vélo) autorise les cyclistes à franchir le feu rouge pour tourner à droite ou aller tout droit."
+  },
+  {
+    "id": 76,
+    "category": "Vitesse",
+    "difficulty": "Difficile",
+    "text": "Quelle est la vitesse maximale pour un conducteur novice sur autoroute ?",
+    "imageUrl": "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&fit=crop",
+    "options": ["110 km/h", "120 km/h", "130 km/h", "100 km/h"],
+    "correctAnswerIndices": [0],
+    "explanation": "Les conducteurs novices sont limités à 110 km/h sur autoroute au lieu de 130 km/h."
+  },
+  {
+    "id": 77,
+    "category": "Sécurité",
+    "difficulty": "Moyen",
+    "text": "Le temps de réaction d'un conducteur est en moyenne de :",
+    "imageUrl": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&fit=crop",
+    "options": ["0,5 seconde", "1 seconde", "2 secondes", "3 secondes"],
+    "correctAnswerIndices": [1],
+    "explanation": "Le temps de réaction moyen est d'environ 1 seconde. À 50 km/h, cela représente 14 mètres parcourus avant de commencer à freiner."
+  },
+  {
+    "id": 78,
+    "category": "Environnement",
+    "difficulty": "Moyen",
+    "text": "Quelle est la sanction pour avoir jeté un mégot par la fenêtre ?",
+    "imageUrl": "https://images.unsplash.com/photo-1532635241-17e820acc59f?w=600&fit=crop",
+    "options": ["68 €", "135 €", "200 €", "Aucune sanction"],
+    "correctAnswerIndices": [1],
+    "explanation": "Jeter un mégot par la fenêtre est passible d'une amende de 135 € (et jusqu'à 450 € si le mégot provoque un incendie)."
+  },
+  {
+    "id": 79,
+    "category": "Piétons et Cyclistes",
+    "difficulty": "Difficile",
+    "text": "Quels aménagements sont réservés aux cyclistes ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&fit=crop",
+    "options": ["Piste cyclable", "Bande cyclable", "Sas vélo", "Couloir de bus"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Piste cyclable, bande cyclable et sas vélo sont réservés aux cyclistes. Le couloir de bus leur est parfois autorisé mais pas réservé."
+  },
+  {
+    "id": 80,
+    "category": "Conditions Météo",
+    "difficulty": "Difficile",
+    "text": "Par forte pluie, quelles précautions prendre ? (plusieurs réponses)",
+    "imageUrl": "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&fit=crop",
+    "options": ["Augmenter les distances de sécurité", "Allumer les feux de croisement", "Réduire la vitesse", "Allumer les feux de brouillard arrière"],
+    "correctAnswerIndices": [0, 1, 2],
+    "explanation": "Par forte pluie : augmentez les distances, allumez les feux de croisement et réduisez la vitesse. Les feux de brouillard arrière sont réservés au brouillard/neige."
+  }
+]

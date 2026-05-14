@@ -1,0 +1,31 @@
+@page "/not-found"
+@layout MainLayout
+@inject NavigationManager Navigation
+
+<PageTitle>Page introuvable - Code de la Route</PageTitle>
+
+<MudPaper Class="pa-8 mt-8 text-center" Elevation="3" MaxWidth="500px" Style="margin: 0 auto; border-radius:16px;">
+    <MudIcon Icon="@Icons.Material.Filled.SentimentDissatisfied"
+             Style="font-size:5rem; color: var(--mud-palette-text-disabled);" />
+    <MudText Typo="Typo.h3" Class="mt-4 mb-2" Style="font-weight:800;">
+        404
+    </MudText>
+    <MudText Typo="Typo.h6" Color="Color.Secondary" Class="mb-4">
+        Page introuvable
+    </MudText>
+    <MudText Typo="Typo.body1" Color="Color.Secondary" Class="mb-6">
+        La page que vous cherchez n'existe pas ou a été déplacée.
+    </MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large"
+               StartIcon="@Icons.Material.Filled.Home"
+               OnClick="GoHome">
+        Retour à l'accueil
+    </MudButton>
+</MudPaper>
+
+@code{
+    private void GoHome()
+    {
+        Navigation.NavigateTo("");
+    }
+    }
