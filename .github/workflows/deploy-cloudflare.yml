@@ -1,4 +1,4 @@
-# Build Blazor WASM + deploy to Cloudflare Pages
+# Build Blazor WASM + deploy to Cloudflare Workers
 name: Deploy to Cloudflare
 
 on:
@@ -62,3 +62,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy
+          wranglerVersion: '4'
