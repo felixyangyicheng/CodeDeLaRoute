@@ -1,0 +1,78 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  TZ: Europe/Paris
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: "cloudflare-pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+
+      - name: Restore dependencies
+        run: dotnet restore ./CodeDeLaRoute.csproj
+
+      - name: Build Blazor Project
+        run: dotnet build ./CodeDeLaRoute.csproj --configuration Release --no-restore
+
+      - name: Publish Blazor Project
+        run: dotnet publish ./CodeDeLaRoute.csproj -c Release -o publish --nologo
+
+      - name: Verify publish output
+        run: |
+          echo "=== publish/wwwroot contents ==="
+          ls -la publish/wwwroot/ | head -40
+          echo ""
+          echo "=== _framework files ==="
+          ls -la publish/wwwroot/_framework/ 2>/dev/null || echo "(no _framework dir)"
+          echo ""
+          echo "=== _headers file ==="
+          cat publish/wwwroot/_headers 2>/dev/null || echo "WARNING: _headers not found!"
+
+      - name: Fix boot loader fingerprint placeholder
+        run: |
+          BOOT_JS=$(find ./publish/wwwroot/_framework -maxdepth 1 -name 'blazor.webassembly*.js' ! -name '*.br' ! -name '*.gz' 2>/dev/null | head -1)
+          if [ -n "$BOOT_JS" ]; then
+            BOOT_NAME=$(basename "$BOOT_JS")
+            sed -i "s|_framework/blazor\.webassembly#\[\.{fingerprint}\]\.js|_framework/${BOOT_NAME}|g" ./publish/wwwroot/index.html
+            echo "Fixed boot loader: ${BOOT_NAME}"
+          else
+            echo "WARNING: blazor.webassembly JS not found in publish/wwwroot/_framework/"
+            ls -la ./publish/wwwroot/_framework/*.js 2>/dev/null || echo "(no JS files)"
+          fi
+
+      - name: Rewrite base href
+        uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
+        with:
+          html_path: ./publish/wwwroot/index.html
+          base_href: /
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy publish/wwwroot --project-name=code-de-la-route
