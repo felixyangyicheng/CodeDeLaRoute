@@ -60,8 +60,7 @@ jobs:
             sed -i "s|_framework/blazor\.webassembly#\[\.{fingerprint}\]\.js|_framework/${BOOT_NAME}|g" ./publish/wwwroot/index.html
             echo "Fixed boot loader: ${BOOT_NAME}"
           else
-            echo "WARNING: blazor.webassembly JS not found in publish/wwwroot/_framework/"
-            ls -la ./publish/wwwroot/_framework/*.js 2>/dev/null || echo "(no JS files)"
+            echo "WARNING: blazor.webassembly JS not found"
           fi
 
       - name: Rewrite base href
@@ -70,9 +69,17 @@ jobs:
           html_path: ./publish/wwwroot/index.html
           base_href: /
 
+      - name: Create Cloudflare Pages project (if not exists)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create code-de-la-route --production-branch=master
+        continue-on-error: true
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy publish/wwwroot --project-name=code-de-la-route
+          command: pages deploy publish/wwwroot --project-name=code-de-la-route --commit-dirty=true
