@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Build and Deploy to Cloudflare Pages
 
 on:
   push:
@@ -10,8 +10,7 @@ env:
   TZ: Europe/Paris
 
 permissions:
-  contents: read
-  deployments: write
+  contents: write
 
 concurrency:
   group: "cloudflare-pages"
@@ -41,16 +40,13 @@ jobs:
       - name: Publish Blazor Project
         run: dotnet publish ./CodeDeLaRoute.csproj -c Release -o publish --nologo
 
-      - name: Verify publish output
+      - name: Verify build output
         run: |
-          echo "=== publish/wwwroot contents ==="
-          ls -la publish/wwwroot/ | head -40
+          echo "=== wwwroot ==="
+          ls publish/wwwroot/ | head -30
           echo ""
-          echo "=== _framework files ==="
-          ls -la publish/wwwroot/_framework/ 2>/dev/null || echo "(no _framework dir)"
-          echo ""
-          echo "=== _headers file ==="
-          cat publish/wwwroot/_headers 2>/dev/null || echo "WARNING: _headers not found!"
+          echo "=== _framework ==="
+          ls publish/wwwroot/_framework/ | head -20
 
       - name: Fix boot loader fingerprint placeholder
         run: |
@@ -59,8 +55,6 @@ jobs:
             BOOT_NAME=$(basename "$BOOT_JS")
             sed -i "s|_framework/blazor\.webassembly#\[\.{fingerprint}\]\.js|_framework/${BOOT_NAME}|g" ./publish/wwwroot/index.html
             echo "Fixed boot loader: ${BOOT_NAME}"
-          else
-            echo "WARNING: blazor.webassembly JS not found"
           fi
 
       - name: Rewrite base href
@@ -69,17 +63,14 @@ jobs:
           html_path: ./publish/wwwroot/index.html
           base_href: /
 
-      - name: Create Cloudflare Pages project (if not exists)
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create code-de-la-route --production-branch=master
-        continue-on-error: true
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy publish/wwwroot --project-name=code-de-la-route --commit-dirty=true
+      - name: Deploy to cloudflare-pages branch
+        run: |
+          cp -r publish/wwwroot /tmp/cf-output
+          cd /tmp/cf-output
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b cloudflare-pages
+          git add .
+          git commit -m "build: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" cloudflare-pages
