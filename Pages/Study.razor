@@ -227,7 +227,7 @@ else
     private void ShuffleQuestions()
     {
         var rng = new Random();
-        filteredQuestions = filteredQuestions.OrderBy(_ => rng.Next()).ToList();
+        filteredQuestions = filteredQuestions.OrderBy(_ => rng.NextInteger<int>()).ToList();
         currentIndex = 0;
     }
 

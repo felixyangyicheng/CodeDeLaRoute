@@ -7,6 +7,12 @@
     <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
     <StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+
+    <!-- .NET 11 Preview 5: 使用 CoreCLR 替代 Mono WASM 运行时，获得 JIT/GC/async 性能提升 -->
+    <UseMonoRuntime>false</UseMonoRuntime>
+
+    <!-- SDK 安全检查：构建时检查 SDK 版本是否有已知漏洞或已 EOL -->
+    <CheckSdkVulnerabilities>true</CheckSdkVulnerabilities>
   </PropertyGroup>
 
   <ItemGroup>

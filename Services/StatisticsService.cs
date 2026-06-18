@@ -78,6 +78,9 @@ public class StatisticsService
         if (history.Count == 0)
             return new GlobalStats();
 
+        // 分组一次、重复使用（消除两次 GroupBy 遍历）
+        var categoryGroups = history.GroupBy(h => h.Category).ToList();
+
         return new GlobalStats
         {
             TotalQuizzes = history.Count,
@@ -88,10 +91,10 @@ public class StatisticsService
             WorstScore = history.Min(h => h.Score),
             TotalTime = TimeSpan.FromTicks(history.Sum(h => h.Duration.Ticks)),
             LastQuizDate = history.Max(h => h.Date),
-            BestCategory = history.GroupBy(h => h.Category)
+            BestCategory = categoryGroups
                 .OrderByDescending(g => g.Average(h => h.Score))
                 .First().Key,
-            CategoryStats = history.GroupBy(h => h.Category)
+            CategoryStats = categoryGroups
                 .Select(g => new CategoryStat
                 {
                     Category = g.Key,

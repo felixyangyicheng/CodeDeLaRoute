@@ -36,7 +36,8 @@ public class QuestionVariantService
     /// <param name="count">目标变体总数</param>
     private List<Question> GenerateVariants(Question baseQ, int count)
     {
-        var pool = new List<Question> { baseQ };
+        // 使用 HashSet + EqualityComparer<T>.Create key-selector 实现 O(1) 去重
+        var seen = new HashSet<Question>(EqualityComparer<Question>.Create(q => q.Text)) { baseQ };
         var strategies = new List<Func<Question, Question?>>
         {
             ShuffleOptions,
@@ -46,24 +47,23 @@ public class QuestionVariantService
             ChangeNumerics
         };
 
-        var shuffledStrategies = strategies.OrderBy(_ => _rng.Next()).ToList();
+        var shuffledStrategies = strategies.OrderBy(_ => _rng.NextInteger<int>()).ToList();
 
         foreach (var strategy in shuffledStrategies)
         {
-            if (pool.Count >= count) break;
+            if (seen.Count >= count) break;
             var variant = strategy(baseQ);
-            if (variant != null && !pool.Any(q => q.Text == variant.Text))
+            if (variant != null && seen.Add(variant))
             {
-                variant.Id = baseQ.Id * 1000 + pool.Count;
+                variant.Id = baseQ.Id * 1000 + (seen.Count - 1);
                 variant.Category = baseQ.Category;
                 variant.Difficulty = baseQ.Difficulty;
                 variant.ImageUrl = baseQ.ImageUrl;
                 variant.Explanation = baseQ.Explanation;
-                pool.Add(variant);
             }
         }
 
-        return pool;
+        return seen.ToList();
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ public class QuestionVariantService
     {
         if (q.Options.Count < 2) return null;
 
-        var indices = Enumerable.Range(0, q.Options.Count).OrderBy(_ => _rng.Next()).ToArray();
+        var indices = Enumerable.Range(0, q.Options.Count).OrderBy(_ => _rng.NextInteger<int>()).ToArray();
         var newOptions = indices.Select(i => q.Options[i]).ToList();
         var newCorrect = q.CorrectAnswerIndices.Select(i => Array.IndexOf(indices, i)).OrderBy(x => x).ToList();
 
@@ -108,7 +108,7 @@ public class QuestionVariantService
             .Where(i => !q.CorrectAnswerIndices.Contains(i)).ToList();
         if (wrongIndices.Count == 0) return null;
 
-        var newCorrect = new List<int> { wrongIndices[_rng.Next(wrongIndices.Count)] };
+        var newCorrect = new List<int> { wrongIndices[_rng.NextInteger<int>(0, wrongIndices.Count)] };
 
         return new Question
         {
@@ -130,10 +130,10 @@ public class QuestionVariantService
         if (wrongIndices.Count == 0) return null;
 
         var newOptions = q.Options.ToList();
-        var targetIdx = wrongIndices[_rng.Next(wrongIndices.Count)];
+        var targetIdx = wrongIndices[_rng.NextInteger<int>(0, wrongIndices.Count)];
 
         var replacements = new[] { "Aucune de ces réponses", "Toutes ces réponses", "Cela dépend de la situation", "Uniquement de nuit", "Sur autoroute uniquement", "En agglomération uniquement", "Sous la pluie", "Par temps sec" };
-        newOptions[targetIdx] = replacements[_rng.Next(replacements.Length)];
+        newOptions[targetIdx] = replacements[_rng.NextInteger<int>(0, replacements.Length)];
 
         return new Question
         {
@@ -184,7 +184,7 @@ public class QuestionVariantService
                 if (match.Success)
                 {
                     var val = int.Parse(match.Value);
-                    var adjust = _rng.Next(-20, 21);
+                    var adjust = _rng.NextInteger<int>(-20, 21);
                     var newVal = Math.Max(10, val + adjust);
                     return opt.Replace(match.Value, newVal.ToString());
                 }

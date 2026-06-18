@@ -98,7 +98,7 @@ public class QuestionService
             : baseQuestions;
 
         var expanded = source.SelectMany(q => _variantService.Expand(q, 5)).ToList();
-        return expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+        return expanded.OrderBy(_ => _random.NextInteger<int>()).Take(Math.Min(count, expanded.Count)).ToList();
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ public class QuestionService
 
         return expanded.Count == 0
             ? new List<Question>()
-            : expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+            : expanded.OrderBy(_ => _random.NextInteger<int>()).Take(Math.Min(count, expanded.Count)).ToList();
     }
 
     /// <summary>
@@ -134,7 +134,7 @@ public class QuestionService
 
         return expanded.Count == 0
             ? new List<Question>()
-            : expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+            : expanded.OrderBy(_ => _random.NextInteger<int>()).Take(Math.Min(count, expanded.Count)).ToList();
     }
 
     /// <summary>
@@ -170,7 +170,7 @@ public class QuestionService
         {
             if (expanded.TryGetValue(code, out var pool) && pool.Count > 0)
             {
-                var taken = pool.OrderBy(_ => _random.Next()).Take(Math.Min(quota, pool.Count)).ToList();
+                var taken = pool.OrderBy(_ => _random.NextInteger<int>()).Take(Math.Min(quota, pool.Count)).ToList();
                 result.AddRange(taken);
             }
         }
@@ -183,13 +183,13 @@ public class QuestionService
             var usedIds = result.Select(q => q.Id).ToHashSet();
             var fillers = allExpanded
                 .Where(q => !usedIds.Contains(q.Id))
-                .OrderBy(_ => _random.Next())
+                .OrderBy(_ => _random.NextInteger<int>())
                 .Take(remaining)
                 .ToList();
             result.AddRange(fillers);
         }
 
-        return result.OrderBy(_ => _random.Next()).ToList();
+        return result.OrderBy(_ => _random.NextInteger<int>()).ToList();
     }
 
     /// <summary>
@@ -203,7 +203,7 @@ public class QuestionService
             : baseQuestions;
 
         var expanded = source.SelectMany(q => _variantService.Expand(q, 5)).ToList();
-        return expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+        return expanded.OrderBy(_ => _random.NextInteger<int>()).Take(Math.Min(count, expanded.Count)).ToList();
     }
 
     /// <summary>
