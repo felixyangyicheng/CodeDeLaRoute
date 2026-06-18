@@ -35,7 +35,98 @@ html, body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Blazor error UI */
+/* QuickGrid theming for MudBlazor compatibility */
+.quickgrid-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.quickgrid-table th {
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--mud-palette-table-lines);
+    color: var(--mud-palette-text-primary);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.quickgrid-table th .col-header-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quickgrid-table th .col-sort-arrow {
+    color: var(--mud-palette-primary);
+    opacity: 0.5;
+}
+
+.quickgrid-table th .col-sort-arrow.asc,
+.quickgrid-table th .col-sort-arrow.desc {
+    opacity: 1;
+}
+
+.quickgrid-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--mud-palette-table-lines);
+    color: var(--mud-palette-text-primary);
+    font-size: 0.875rem;
+}
+
+.quickgrid-table tbody tr:hover {
+    background-color: var(--mud-palette-table-hover);
+}
+
+.quickgrid-table tbody tr:nth-child(even) {
+    background-color: var(--mud-palette-table-striped);
+}
+
+/* QuickGrid paginator */
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+    color: var(--mud-palette-text-secondary);
+    font-size: 0.875rem;
+}
+
+.paginator button {
+    border: 1px solid var(--mud-palette-lines-default);
+    background: transparent;
+    color: var(--mud-palette-text-primary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.paginator button:hover:not(:disabled) {
+    background: var(--mud-palette-action-default-hover);
+    border-color: var(--mud-palette-primary);
+}
+
+.paginator button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.paginator button.current {
+    background: var(--mud-palette-primary);
+    color: var(--mud-palette-primary-text);
+    border-color: var(--mud-palette-primary);
+    font-weight: 600;
+}
+
+/* Term exercise cards */
+.term-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    border-color: var(--mud-palette-primary);
+}
 #blazor-error-ui {
     background: #ef4444;
     color: white;

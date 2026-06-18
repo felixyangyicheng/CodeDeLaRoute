@@ -85,49 +85,53 @@ else
         </MudButton>
     </div>
 
-    <MudPaper Class="pa-0" Elevation="1" Style="border-radius:16px; overflow:hidden;">
-        <MudTable Items="@history" Hover="true" Striped="true" Dense="false" Breakpoint="Breakpoint.Sm"
-                  SortLabel="Trier" Elevation="0">
-            <HeaderContent>
-                <MudTh>Date</MudTh>
-                <MudTh>Catégorie</MudTh>
-                <MudTh>Score</MudTh>
-                <MudTh>Résultat</MudTh>
-                <MudTh>Durée</MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd DataLabel="Date">@context.FormattedDate</MudTd>
-                <MudTd DataLabel="Catégorie">
+    <MudPaper Class="pa-4" Elevation="1" Style="border-radius:16px; overflow:hidden;">
+        <QuickGrid Items="@history.AsQueryable()" Class="quickgrid-table" Style="width:100%;">
+            <PropertyColumn Property="@(e => e.FormattedDate)" Sortable="true" Title="Date">
+                <ColumnOptions>
+                    <SortBy Property="@(e => e.Date)" />
+                </ColumnOptions>
+            </PropertyColumn>
+            <TemplateColumn Title="Catégorie" Sortable="true">
+                <SortBy Property="@(e => e.Category)" />
+                <ChildContent>
                     <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined"
                              Color="@(context.Category == "Toutes" ? Color.Default : Color.Primary)">
                         @GetCategoryIcon(context.Category) @context.Category
                     </MudChip>
-                </MudTd>
-                <MudTd DataLabel="Score">
+                </ChildContent>
+            </TemplateColumn>
+            <TemplateColumn Title="Score" Sortable="true">
+                <SortBy Property="@(e => e.Score)" />
+                <ChildContent>
                     <div class="d-flex align-center gap-2">
                         <MudProgressCircular Color="@GetScoreColor(context.Score)" Size="Size.Small"
                                              Value="@context.Score" Style="width:36px; height:36px;" />
                         <MudText Typo="Typo.body2" Style="font-weight:700;">@($"{context.Score:0.#}%")</MudText>
                     </div>
-                </MudTd>
-                <MudTd DataLabel="Résultat">
+                </ChildContent>
+            </TemplateColumn>
+            <TemplateColumn Title="Résultat" Sortable="true">
+                <SortBy Property="@(e => e.CorrectAnswers)" />
+                <ChildContent>
                     <MudText Typo="Typo.body2">
                         <span style="color:var(--mud-palette-success); font-weight:600;">@context.CorrectAnswers</span>
                         <span style="color:var(--mud-palette-text-secondary);"> / @context.TotalQuestions</span>
                     </MudText>
-                </MudTd>
-                <MudTd DataLabel="Durée">@context.FormattedDuration</MudTd>
-            </RowTemplate>
-            <PagerContent>
-                <MudTablePager PageSizeOptions="new int[] { 10, 20, 50 }" />
-            </PagerContent>
-        </MudTable>
+                </ChildContent>
+            </TemplateColumn>
+            <PropertyColumn Property="@(e => e.FormattedDuration)" Sortable="true" Title="Durée" />
+        </QuickGrid>
+        <div class="d-flex justify-center mt-4">
+            <Paginator State="@paginationState" />
+        </div>
     </MudPaper>
 }
 
 @code {
     private GlobalStats? stats;
     private List<QuizHistoryEntry> history = new();
+    private PaginationState paginationState = new() { ItemsPerPage = 10 };
 
     protected override async Task OnInitializedAsync()
     {
@@ -153,18 +157,33 @@ else
     private string GetCategoryIcon(string category) => category switch
     {
         "Signalisation" => "🚦",
+        "Signalisation temporaire" => "🚧",
         "Priorité" => "⚠️",
         "Vitesse" => "⏱️",
         "Alcool et Stupéfiants" => "🍷",
+        "Distractions et Fatigue" => "😴",
         "Stationnement" => "🅿️",
         "Éclairage" => "💡",
         "Sécurité" => "🛡️",
         "Croisement et Dépassement" => "↔️",
+        "Circulation interfile" => "🏍️",
         "Environnement" => "🌿",
         "Piétons et Cyclistes" => "🚶",
         "Premiers Secours" => "🏥",
         "Permis à Points" => "📝",
         "Conditions Météo" => "🌧️",
+        "Conditions météo moto" => "🌧️",
+        "Tunnels et Autoroutes" => "🚇",
+        "Passages à niveau" => "🚂",
+        "Équipement" => "🪖",
+        "Maîtrise" => "🎯",
+        "Conduite" => "🏍️",
+        "Mécanique" => "🔧",
+        "Permis" => "📝",
+        "Passager" => "🧑‍🤝‍🧑",
+        "Chargement et bagages" => "📦",
+        "Assurance et documents" => "📄",
+        "Documents et Assurance" => "📄",
         "Toutes" => "🎲",
         _ => "📋"
     };

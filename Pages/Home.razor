@@ -61,6 +61,29 @@
                OnClick="StartQuiz">
         Commencer le Quiz
     </MudButton>
+
+    <MudDivider Class="my-4" />
+
+    <MudText Typo="Typo.subtitle2" Class="mb-2" Style="font-weight:600;">
+        🎯 Simulation d&apos;examen officiel
+    </MudText>
+    <MudText Typo="Typo.caption" Class="mb-3" Style="color: var(--mud-palette-text-secondary);">
+        40 questions · 30 minutes · 20s par question · 35/40 pour réussir
+    </MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Error" FullWidth="true"
+               Size="Size.Large" Style="font-weight:700; font-size:1.1rem;"
+               StartIcon="@Icons.Material.Filled.School"
+               OnClick="StartExam">
+        Examen Blanc (@(vehicle == "moto" ? "ETM Moto" : "Auto"))
+    </MudButton>
+
+    <MudDivider Class="my-4" />
+
+    <MudButton Variant="Variant.Text" Color="Color.Secondary" FullWidth="true"
+               OnClick="() => Navigation.NavigateTo(\"/termes\")"
+               StartIcon="@Icons.Material.Filled.FindInPage">
+        📚 Exercices par termes
+    </MudButton>
 </MudPaper>
 
 @code {
@@ -90,27 +113,41 @@
         Navigation.NavigateTo($"/quiz?count={questionCount}&vehicle={vehicle}{catParam}");
     }
 
+    private void StartExam()
+    {
+        Navigation.NavigateTo($"/quiz?exam=true&vehicle={vehicle}");
+    }
+
     private string GetCategoryIcon(string category) => category switch
     {
         "Signalisation" => "🚦",
+        "Signalisation temporaire" => "🚧",
         "Priorité" => "⚠️",
         "Vitesse" => "⏱️",
         "Alcool et Stupéfiants" => "🍷",
+        "Distractions et Fatigue" => "😴",
         "Stationnement" => "🅿️",
         "Éclairage" => "💡",
         "Sécurité" => "🛡️",
         "Croisement et Dépassement" => "↔️",
+        "Circulation interfile" => "🏍️",
         "Environnement" => "🌿",
         "Piétons et Cyclistes" => "🚶",
         "Premiers Secours" => "🏥",
         "Permis à Points" => "📝",
         "Conditions Météo" => "🌧️",
+        "Conditions météo moto" => "🌧️",
+        "Tunnels et Autoroutes" => "🚇",
+        "Passages à niveau" => "🚂",
         "Équipement" => "🪖",
         "Maîtrise" => "🎯",
         "Conduite" => "🏍️",
         "Mécanique" => "🔧",
         "Permis" => "📝",
         "Passager" => "🧑‍🤝‍🧑",
+        "Chargement et bagages" => "📦",
+        "Assurance et documents" => "📄",
+        "Documents et Assurance" => "📄",
         _ => "📋"
     };
 }

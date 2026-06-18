@@ -1,4 +1,5 @@
 @page "/quiz"
+@page "/quiz-termes"
 @using CodeDeLaRoute.Models
 @using CodeDeLaRoute.Services
 @inject QuestionService QuestionService
@@ -6,7 +7,7 @@
 @inject NavigationManager Navigation
 @implements IDisposable
 
-<PageTitle>Quiz - Code de la Route</PageTitle>
+<PageTitle>@(ExamMode ? "Examen Blanc - Code de la Route" : SelectedTermes.Count > 0 ? $"{TermesGlossaire.Get(SelectedTermes[0])?.Name ?? "Termes"} - Code de la Route" : "Quiz - Code de la Route")</PageTitle>
 
 @if (questions == null || questions.Count == 0)
 {
@@ -16,19 +17,35 @@
 }
 else if (showResults)
 {
-    <MudPaper Class="pa-6 mt-4" Elevation="3" Style="border-radius:16px; text-align:center;">
-        <MudText Typo="Typo.h4" Style="font-weight:800;">📊 Résultats</MudText>
+    var fautes = questions.Count - correctCount;
+    var passed = ExamMode ? fautes <= 5 : ScorePercent >= 70;
 
-        @if (ExamMode && ScorePercent >= 70)
+    <MudPaper Class="pa-6 mt-4" Elevation="3" Style="border-radius:16px; text-align:center;">
+        <MudText Typo="Typo.h4" Style="font-weight:800;">
+            @(ExamMode ? "📋 Résultat de l&apos;Examen" : "📊 Résultats")
+        </MudText>
+
+        @if (ExamMode)
         {
-            <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
-                ✅ Vous avez réussi l&apos;examen ! (max 5 fautes tolérées)
-            </MudAlert>
+            if (passed)
+            {
+                <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
+                    ✅ <strong>ADMIS</strong> — @correctCount/40 bonnes réponses (@fautes faute@(fautes > 1 ? "s" : ""))
+                </MudAlert>
+            }
+            else
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
+                    ❌ <strong>NON ADMIS</strong> — @fautes fautes (@correctCount/40). Maximum autorisé : 5 fautes.
+                </MudAlert>
+            }
         }
-        else if (ExamMode && ScorePercent < 70)
+        else
         {
-            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
-                ❌ Vous avez dépassé les 5 fautes. Continuez à vous entraîner !
+            var msg = ScorePercent >= 70 ? $"✅ Vous avez réussi ! ({correctCount}/{questions.Count})"
+                    : $"❌ Continuez à vous entraîner ({correctCount}/{questions.Count})";
+            <MudAlert Severity="@(ScorePercent >= 70 ? Severity.Success : Severity.Warning)" Variant="Variant.Filled" Class="my-2" Style="border-radius:12px;">
+                @msg
             </MudAlert>
         }
 
@@ -44,7 +61,16 @@ else if (showResults)
             </MudProgressCircular>
         </div>
 
-        <MudText Typo="Typo.h5" Class="mb-4" Style="font-weight:700;">@GetResultMessage()</MudText>
+        @if (ExamMode)
+        {
+            <MudText Typo="Typo.body1" Class="mb-4" Style="font-weight:500; color: var(--mud-palette-text-secondary);">
+                Seuil de réussite : <strong>35/40</strong> (5 fautes maximum)
+            </MudText>
+        }
+        else
+        {
+            <MudText Typo="Typo.h5" Class="mb-4" Style="font-weight:700;">@GetResultMessage()</MudText>
+        }
 
         <MudGrid Spacing="3" Class="mb-4">
             <MudItem xs="4">
@@ -55,8 +81,8 @@ else if (showResults)
             </MudItem>
             <MudItem xs="4">
                 <MudPaper Class="pa-3" Elevation="1" Style="border-radius:12px;">
-                    <MudText Typo="Typo.h4" Color="Color.Error" Style="font-weight:800;">@(questions.Count - correctCount)</MudText>
-                    <MudText Typo="Typo.caption">INCORRECTES</MudText>
+                    <MudText Typo="Typo.h4" Color="Color.Error" Style="font-weight:800;">@fautes</MudText>
+                    <MudText Typo="Typo.caption">FAUTES</MudText>
                 </MudPaper>
             </MudItem>
             <MudItem xs="4">
@@ -135,16 +161,47 @@ else
         _ => Color.Default
     };
 
-    @* --- Header --- *@
+    @* --- Header with per-question timer --- *@
+    @if (SelectedTermes.Count > 0)
+    {
+        <MudPaper Class="pa-2 mb-3" Style="border-radius:8px; background: var(--mud-palette-primary-hover); border-left: 4px solid var(--mud-palette-primary);">
+            <div class="d-flex flex-wrap gap-1 align-center">
+                <MudText Typo="Typo.caption" Style="font-weight:600; color: var(--mud-palette-primary);">
+                    📚 Termes :
+                </MudText>
+                @foreach (var tc in SelectedTermes)
+                {
+                    var td = TermesGlossaire.Get(tc);
+                    if (td != null)
+                    {
+                        <MudChip T="string" Size="Size.Small" Variant="Variant.Text"
+                                 Color="Color.Primary" Style="font-size:0.75rem;">
+                            @td.Icon @td.Name
+                        </MudChip>
+                    }
+                }
+            </div>
+        </MudPaper>
+    }
     <div class="d-flex align-center justify-space-between mb-2 mt-4 gap-2 flex-wrap">
         <MudText Typo="Typo.subtitle2">
             Question <strong>@(currentIndex + 1)</strong> / @questions.Count
         </MudText>
-        <MudChip T="string" Size="Size.Small" Variant="MudBlazor.Variant.Outlined"
-                 Color="@(ExamMode && Countdown.TotalMinutes < 5 ? Color.Error : Color.Default)"
-                 Icon="@Icons.Material.Filled.Timer">
-            @FormatTimeDisplay()
-        </MudChip>
+        <div class="d-flex align-center gap-2">
+            @if (ExamMode)
+            {
+                <MudChip T="string" Size="Size.Small" Variant="Variant.Filled"
+                         Color="@(questionTimeLeft <= 5 ? Color.Error : questionTimeLeft <= 10 ? Color.Warning : Color.Primary)"
+                         Icon="@Icons.Material.Filled.HourglassBottom">
+                    @questionTimeLeft.ToString("0")s
+                </MudChip>
+            }
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined"
+                     Color="@(ExamMode && globalTimeLeft.TotalMinutes < 5 ? Color.Error : Color.Default)"
+                     Icon="@Icons.Material.Filled.Timer">
+                @FormatTimeDisplay()
+            </MudChip>
+        </div>
     </div>
 
     <div class="d-flex align-center gap-2 mb-3">
@@ -156,8 +213,8 @@ else
         </MudChip>
         @if (q.IsMultipleChoice)
         {
-            <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Color="Color.Info">
-                Choix multiple (@q.CorrectAnswerIndices.Count bonnes réponses)
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Filled" Color="Color.Warning">
+                ⚠️ Plusieurs réponses (@q.CorrectAnswerIndices.Count attendues)
             </MudChip>
         }
     </div>
@@ -165,6 +222,14 @@ else
     @* --- Progress bar --- *@
     <MudProgressLinear Value="@((double)(currentIndex + 1) / questions.Count * 100)" Color="Color.Primary"
                        Size="Size.Small" Class="mb-4" Style="border-radius:8px;" />
+
+    @* --- Per-question countdown bar (exam mode) --- *@
+    @if (ExamMode && !answered)
+    {
+        <MudProgressLinear Value="@(questionTimeLeft / 20.0 * 100)"
+                           Color="@(questionTimeLeft <= 5 ? Color.Error : questionTimeLeft <= 10 ? Color.Warning : Color.Primary)"
+                           Size="Size.Small" Class="mb-3" Style="border-radius:8px; height:6px;" />
+    }
 
     @* --- Question card --- *@
     <MudPaper Class="pa-6 mb-4" Elevation="3" Style="border-radius:16px;">
@@ -230,32 +295,106 @@ else
     private List<QuestionResult> questionResults = new();
     private DateTime startTime;
     private DateTime endTime;
+    private double questionTimeLeft = 20;
+    private DateTime questionStartTime;
     private System.Threading.Timer? timer;
 
-    private int Count => int.TryParse(Navigation.GetQueryParam("count"), out var c) ? Math.Clamp(c, 1, 80) : 10;
-    private string? Category => Navigation.GetQueryParam("category");
-    private string Vehicle => Navigation.GetQueryParam("vehicle") ?? "auto";
-    private bool ExamMode => Navigation.GetQueryParam("exam")?.ToLower() == "true";
-    private TimeSpan Countdown => ExamMode ? TimeSpan.FromMinutes(40) - (DateTime.Now - startTime) : TimeSpan.Zero;
-    private bool TimeIsUp => ExamMode && Countdown <= TimeSpan.Zero;
+    [SupplyParameterFromQuery(Name = "count")]
+    public int Count { get; set; } = 10;
+    [SupplyParameterFromQuery(Name = "category")]
+    public string? Category { get; set; }
+    [SupplyParameterFromQuery(Name = "vehicle")]
+    public string Vehicle { get; set; } = "auto";
+    [SupplyParameterFromQuery(Name = "exam")]
+    public bool ExamMode { get; set; }
+    [SupplyParameterFromQuery(Name = "termes")]
+    public string? TermesParam { get; set; }
+    private List<string> SelectedTermes => TermesParam?.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new();
+
+    // Exam mode constants (matching real ETG)
+    private const int ExamQuestionCount = 40;
+    private const int ExamTotalMinutes = 30;
+    private const double ExamQuestionSeconds = 20;
+
+    private TimeSpan globalTimeLeft => ExamMode
+        ? TimeSpan.FromMinutes(ExamTotalMinutes) - (DateTime.Now - startTime)
+        : TimeSpan.Zero;
+    private bool GlobalTimeIsUp => ExamMode && globalTimeLeft <= TimeSpan.Zero;
+    private bool QuestionTimeIsUp => ExamMode && questionTimeLeft <= 0 && !answered;
 
     private Question CurrentQuestion => questions[currentIndex];
 
     protected override async Task OnInitializedAsync()
     {
-        questions = await QuestionService.GetRandomQuizAsync(Count, Category);
+        if (ExamMode)
+        {
+            Count = ExamQuestionCount;
+            questions = await QuestionService.GetExamQuizAsync(Vehicle);
+        }
+        else if (SelectedTermes.Count > 0)
+        {
+            Count = Math.Clamp(Count, 1, 80);
+            questions = await QuestionService.GetMultiTermeQuizAsync(Count, SelectedTermes, Vehicle);
+        }
+        else
+        {
+            Count = Math.Clamp(Count, 1, 80);
+            questions = await QuestionService.GetRandomQuizAsync(Count, Category, Vehicle);
+        }
         startTime = DateTime.Now;
+        questionStartTime = DateTime.Now;
+        questionTimeLeft = ExamQuestionSeconds;
+
         timer = new System.Threading.Timer(_ =>
         {
             InvokeAsync(() =>
             {
-                if (ExamMode && TimeIsUp && !showResults)
+                if (ExamMode && !answered && !showResults)
                 {
-                    ForceEndQuiz();
+                    // Update per-question countdown
+                    var elapsed = (DateTime.Now - questionStartTime).TotalSeconds;
+                    questionTimeLeft = Math.Max(0, ExamQuestionSeconds - elapsed);
+
+                    if (GlobalTimeIsUp)
+                    {
+                        ForceEndQuiz();
+                        return;
+                    }
+                    if (QuestionTimeIsUp)
+                    {
+                        HandleTimeUp();
+                        return;
+                    }
                 }
                 StateHasChanged();
             });
-        }, null, 0, 1000);
+        }, null, 0, 250);
+    }
+
+    /// <summary>
+    /// Called when per-question 20s timer expires: auto-submit as wrong and advance.
+    /// </summary>
+    private void HandleTimeUp()
+    {
+        if (answered || showResults) return;
+
+        // Mark as wrong (no answer given)
+        questionResults.Add(new QuestionResult
+        {
+            Question = CurrentQuestion,
+            UserAnswerIndices = new(),
+            IsCorrect = false
+        });
+        answered = true;
+
+        // Auto-advance after a brief delay
+        _ = Task.Delay(1500).ContinueWith(_ =>
+        {
+            InvokeAsync(() =>
+            {
+                if (!showResults) NextQuestion();
+            });
+        });
     }
 
     private void ForceEndQuiz()
@@ -266,12 +405,17 @@ else
         // Mark remaining unanswered questions as wrong
         for (int i = currentIndex; i < questions.Count; i++)
         {
-            questionResults.Add(new QuestionResult
+            // Skip if already answered (HandleTimeUp case)
+            var alreadyRecorded = questionResults.Any(qr => qr.Question.Id == questions[i].Id && qr.UserAnswerIndices.Count == 0 && !qr.IsCorrect);
+            if (!alreadyRecorded)
             {
-                Question = questions[i],
-                UserAnswerIndices = new(),
-                IsCorrect = false
-            });
+                questionResults.Add(new QuestionResult
+                {
+                    Question = questions[i],
+                    UserAnswerIndices = new(),
+                    IsCorrect = false
+                });
+            }
         }
         showResults = true;
         _ = SaveQuizResult();
@@ -331,6 +475,8 @@ else
             currentIndex++;
             answered = false;
             selectedIndices = new();
+            questionStartTime = DateTime.Now;
+            questionTimeLeft = ExamQuestionSeconds;
         }
         else
         {
@@ -343,7 +489,11 @@ else
 
     private async void RestartQuiz()
     {
-        questions = await QuestionService.GetRandomQuizAsync(Count, Category, Vehicle);
+        questions = ExamMode
+            ? await QuestionService.GetExamQuizAsync(Vehicle)
+            : SelectedTermes.Count > 0
+                ? await QuestionService.GetMultiTermeQuizAsync(Count, SelectedTermes, Vehicle)
+                : await QuestionService.GetRandomQuizAsync(Count, Category, Vehicle);
         currentIndex = 0;
         answered = false;
         showResults = false;
@@ -352,15 +502,22 @@ else
         correctCount = 0;
         questionResults = new();
         startTime = DateTime.Now;
+        questionStartTime = DateTime.Now;
+        questionTimeLeft = ExamQuestionSeconds;
         timer = new System.Threading.Timer(_ =>
         {
             InvokeAsync(() =>
             {
-                if (ExamMode && TimeIsUp && !showResults)
-                    ForceEndQuiz();
+                if (ExamMode && !answered && !showResults)
+                {
+                    var elapsed = (DateTime.Now - questionStartTime).TotalSeconds;
+                    questionTimeLeft = Math.Max(0, ExamQuestionSeconds - elapsed);
+                    if (GlobalTimeIsUp) ForceEndQuiz();
+                    else if (QuestionTimeIsUp) HandleTimeUp();
+                }
                 StateHasChanged();
             });
-        }, null, 0, 1000);
+        }, null, 0, 250);
     }
 
     private void GoHome() => Navigation.NavigateTo("/");
@@ -409,7 +566,7 @@ else
     {
         if (ExamMode)
         {
-            var cd = Countdown;
+            var cd = globalTimeLeft;
             return cd.TotalSeconds > 0
                 ? $"{(int)cd.TotalMinutes:D2}:{cd.Seconds:D2}"
                 : "00:00";
@@ -427,24 +584,33 @@ else
     private string GetCategoryIcon(string category) => category switch
     {
         "Signalisation" => "🚦",
+        "Signalisation temporaire" => "🚧",
         "Priorité" => "⚠️",
         "Vitesse" => "⏱️",
         "Alcool et Stupéfiants" => "🍷",
+        "Distractions et Fatigue" => "😴",
         "Stationnement" => "🅿️",
         "Éclairage" => "💡",
         "Sécurité" => "🛡️",
         "Croisement et Dépassement" => "↔️",
+        "Circulation interfile" => "🏍️",
         "Environnement" => "🌿",
         "Piétons et Cyclistes" => "🚶",
         "Premiers Secours" => "🏥",
         "Permis à Points" => "📝",
         "Conditions Météo" => "🌧️",
+        "Conditions météo moto" => "🌧️",
+        "Tunnels et Autoroutes" => "🚇",
+        "Passages à niveau" => "🚂",
         "Équipement" => "🪖",
         "Maîtrise" => "🎯",
         "Conduite" => "🏍️",
         "Mécanique" => "🔧",
         "Permis" => "📝",
         "Passager" => "🧑‍🤝‍🧑",
+        "Chargement et bagages" => "📦",
+        "Assurance et documents" => "📄",
+        "Documents et Assurance" => "📄",
         _ => "📋"
     };
 

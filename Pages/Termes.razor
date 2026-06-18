@@ -1,0 +1,156 @@
+@page "/termes"
+@using CodeDeLaRoute.Services
+@using CodeDeLaRoute.Models
+@inject QuestionService QuestionService
+@inject NavigationManager Navigation
+
+<PageTitle>Exercices par Termes - Code de la Route</PageTitle>
+
+@* Term info banner when in quiz-termes mode (handled by Quiz.razor) *@
+
+<div class="mb-6 mt-4" style="animation: fadeSlideIn 0.6s ease;">
+    <MudText Typo="Typo.h4" Style="font-weight:800;">
+        📚 Exercices par termes
+    </MudText>
+    <MudText Typo="Typo.subtitle1" Class="mt-1" Style="color: var(--mud-palette-text-secondary);">
+        Sélectionnez un ou plusieurs termes du Code de la Route pour vous entraîner
+    </MudText>
+</div>
+
+@* --- Vehicle toggle --- *@
+<MudButtonGroup Variant="Variant.Outlined" FullWidth="true" Class="mb-4">
+    <MudButton Color="@(vehicle == "auto" ? Color.Primary : Color.Default)"
+               Variant="@(vehicle == "auto" ? Variant.Filled : Variant.Outlined)"
+               OnClick="SwitchToAuto"
+               StartIcon="@Icons.Material.Filled.DirectionsCar"
+               Style="font-weight:600;">
+        Auto
+    </MudButton>
+    <MudButton Color="@(vehicle == "moto" ? Color.Primary : Color.Default)"
+               Variant="@(vehicle == "moto" ? Variant.Filled : Variant.Outlined)"
+               OnClick="SwitchToMoto"
+               StartIcon="@Icons.Material.Filled.TwoWheeler"
+               Style="font-weight:600;">
+        Moto
+    </MudButton>
+</MudButtonGroup>
+
+@if (availableTermes == null)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-4" />
+}
+else if (availableTermes.Count == 0)
+{
+    <MudAlert Severity="Severity.Warning" Class="mt-4">
+        Aucun terme disponible pour ce véhicule.
+    </MudAlert>
+}
+else
+{
+    <MudText Typo="Typo.subtitle2" Class="mb-1" Style="font-weight:600;">
+        Sélectionnez un ou plusieurs termes
+    </MudText>
+    <MudText Typo="Typo.caption" Class="mb-3" Style="color: var(--mud-palette-text-secondary);">
+        @(selectedTermes.Count == 0 ? availableTermes.Sum(t => t.Count) : availableTermes.Where(t => selectedTermes.Contains(t.Code)).Sum(t => t.Count)) questions disponibles
+    </MudText>
+
+    <MudPaper Class="pa-4" Elevation="1" Style="border-radius:16px;">
+        <MudChipSet T="string" @bind-SelectedValues="selectedTermes"
+                    SelectionMode="SelectionMode.MultiSelection"
+                    Filter="true" CheckMark="true"
+                    Variant="Variant.Outlined" Color="Color.Primary"
+                    MaxWidth="100%">
+            @foreach (var t in availableTermes.OrderByDescending(t => t.Count))
+            {
+                var countColor = t.Count >= 20 ? "var(--mud-palette-success)" 
+                               : t.Count >= 10 ? "var(--mud-palette-warning)" 
+                               : "var(--mud-palette-text-secondary)";
+                <MudChip Value="@t.Code"
+                         Text="@($"{t.Icon} {t.Name}")"
+                         Tag="@($"{t.Count}Q")"
+                         TagColor="Color.Default" />
+            }
+        </MudChipSet>
+    </MudPaper>
+
+    @* --- Question count --- *@
+    <MudSelect T="int" @bind-Value="questionCount" Label="📊 Nombre de questions" Variant="Variant.Outlined" Class="mt-4">
+        <MudSelectItem Value="5">5 questions (rapide)</MudSelectItem>
+        <MudSelectItem Value="10">10 questions (standard)</MudSelectItem>
+        <MudSelectItem Value="20">20 questions (complet)</MudSelectItem>
+        <MudSelectItem Value="40">40 questions</MudSelectItem>
+    </MudSelect>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true"
+               Size="Size.Large" Class="mt-6" Style="font-weight:700; font-size:1.1rem;"
+               StartIcon="@Icons.Material.Filled.PlayArrow"
+               Disabled="@(selectedTermes.Count == 0)"
+               OnClick="StartTermeQuiz">
+        @(selectedTermes.Count == 1
+            ? $"Commencer — {availableTermes.First(t => t.Code == selectedTermes[0]).Name}"
+            : $"Commencer — {selectedTermes.Count} termes sélectionnés")
+    </MudButton>
+
+    @if (selectedTermes.Count > 1)
+    {
+        <MudButton Variant="Variant.Text" Color="Color.Secondary" FullWidth="true"
+                   Size="Size.Small" Class="mt-2"
+                   OnClick="() => selectedTermes.Clear()">
+            Effacer la sélection
+        </MudButton>
+    }
+
+    @* --- Quick single-term shortcuts --- *@
+    <MudDivider Class="my-4" />
+    <MudText Typo="Typo.subtitle2" Class="mb-2" Style="font-weight:600;">
+        ⚡ Exercices rapides (10 questions)
+    </MudText>
+    <MudGrid Spacing="2">
+        @foreach (var t in availableTermes.Where(t => t.Count >= 5).Take(12))
+        {
+            <MudItem xs="6" sm="4" md="3">
+                <MudPaper Class="pa-3 text-center term-card"
+                         Elevation="1"
+                         Style="cursor:pointer; border-radius:12px; transition: all 0.2s;"
+                         OnClick="() => StartQuickTerme(t.Code)">
+                    <MudText Typo="Typo.h6" Style="font-size:1.5rem;">@t.Icon</MudText>
+                    <MudText Typo="Typo.body2" Style="font-weight:600;">@t.Name</MudText>
+                    <MudText Typo="Typo.caption" Color="Color.Secondary">@t.Count questions</MudText>
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    private string vehicle = "auto";
+    private List<(string Code, string Name, string Icon, int Count)>? availableTermes;
+    private HashSet<string> selectedTermes = new();
+    private int questionCount = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        availableTermes = await QuestionService.GetAvailableTermesAsync(vehicle);
+    }
+
+    private async Task SwitchToAuto() => await SwitchVehicle("auto");
+    private async Task SwitchToMoto() => await SwitchVehicle("moto");
+
+    private async Task SwitchVehicle(string v)
+    {
+        vehicle = v;
+        selectedTermes.Clear();
+        availableTermes = await QuestionService.GetAvailableTermesAsync(vehicle);
+    }
+
+    private void StartTermeQuiz()
+    {
+        var codes = string.Join(",", selectedTermes);
+        Navigation.NavigateTo($"/quiz-termes?count={questionCount}&vehicle={vehicle}&termes={Uri.EscapeDataString(codes)}");
+    }
+
+    private void StartQuickTerme(string code)
+    {
+        Navigation.NavigateTo($"/quiz-termes?count=10&vehicle={vehicle}&termes={Uri.EscapeDataString(code)}");
+    }
+}

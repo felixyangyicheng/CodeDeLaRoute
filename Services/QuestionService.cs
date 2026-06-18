@@ -102,6 +102,97 @@ public class QuestionService
     }
 
     /// <summary>
+    /// 生成术语专项练习：筛选包含指定术语的题目。
+    /// </summary>
+    /// <param name="count">题目数量</param>
+    /// <param name="termeCode">术语代码（如 "vitesse"、"priorite"）</param>
+    /// <param name="vehicle">车辆类型："auto" 或 "moto"</param>
+    public async Task<List<Question>> GetTermeQuizAsync(int count, string termeCode, string vehicle = "auto")
+    {
+        var baseQuestions = await GetQuestionsAsync(vehicle);
+        var expanded = baseQuestions
+            .SelectMany(q => _variantService.Expand(q, 5))
+            .Where(q => q.Termes.Contains(termeCode))
+            .ToList();
+
+        return expanded.Count == 0
+            ? new List<Question>()
+            : expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+    }
+
+    /// <summary>
+    /// 生成多术语练习：筛选包含任一指定术语的题目。
+    /// </summary>
+    public async Task<List<Question>> GetMultiTermeQuizAsync(int count, List<string> termeCodes, string vehicle = "auto")
+    {
+        var baseQuestions = await GetQuestionsAsync(vehicle);
+        var codeSet = termeCodes.ToHashSet();
+        var expanded = baseQuestions
+            .SelectMany(q => _variantService.Expand(q, 5))
+            .Where(q => q.Termes.Any(t => codeSet.Contains(t)))
+            .ToList();
+
+        return expanded.Count == 0
+            ? new List<Question>()
+            : expanded.OrderBy(_ => _random.Next()).Take(Math.Min(count, expanded.Count)).ToList();
+    }
+
+    /// <summary>
+    /// 获取指定车辆类型可用的所有术语及其题目数量。
+    /// </summary>
+    public async Task<List<(string Code, string Name, string Icon, int Count)>> GetAvailableTermesAsync(string vehicle = "auto")
+    {
+        var baseQuestions = await GetQuestionsAsync(vehicle);
+        var expanded = baseQuestions.SelectMany(q => _variantService.Expand(q, 5)).ToList();
+
+        return TermesGlossaire.All
+            .Select(t => (t.Code, t.Name, t.Icon, Count: expanded.Count(q => q.Termes.Contains(t.Code))))
+            .Where(t => t.Count > 0)
+            .OrderByDescending(t => t.Count)
+            .ToList();
+    }
+
+    /// <summary>
+    /// 生成符合 ETG 官方主题分布的模拟考试（40 题）。
+    /// 按官方 10 个主题各自的数量配额，从对应主题中随机抽取。
+    /// </summary>
+    /// <param name="vehicle">车辆类型："auto" 或 "moto"</param>
+    public async Task<List<Question>> GetExamQuizAsync(string vehicle = "auto")
+    {
+        var baseQuestions = await GetQuestionsAsync(vehicle);
+        var expanded = baseQuestions
+            .SelectMany(q => _variantService.Expand(q, 5))
+            .GroupBy(q => q.ThemeCode)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        var result = new List<Question>();
+        foreach (var (code, name, quota, icon) in EtgThemes.All)
+        {
+            if (expanded.TryGetValue(code, out var pool) && pool.Count > 0)
+            {
+                var taken = pool.OrderBy(_ => _random.Next()).Take(Math.Min(quota, pool.Count)).ToList();
+                result.AddRange(taken);
+            }
+        }
+
+        // Fill remaining up to 40 if some themes lacked questions
+        if (result.Count < EtgThemes.TotalQuestions)
+        {
+            var remaining = EtgThemes.TotalQuestions - result.Count;
+            var allExpanded = baseQuestions.SelectMany(q => _variantService.Expand(q, 5)).ToList();
+            var usedIds = result.Select(q => q.Id).ToHashSet();
+            var fillers = allExpanded
+                .Where(q => !usedIds.Contains(q.Id))
+                .OrderBy(_ => _random.Next())
+                .Take(remaining)
+                .ToList();
+            result.AddRange(fillers);
+        }
+
+        return result.OrderBy(_ => _random.Next()).ToList();
+    }
+
+    /// <summary>
     /// 同步生成随机测验（缓存已加载时使用，否则返回空列表）。
     /// </summary>
     public List<Question> GetRandomQuiz(int count = 10, string? category = null, string vehicle = "auto")
